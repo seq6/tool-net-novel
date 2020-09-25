@@ -1,5 +1,5 @@
 FROM alpine:3.12
-LABEL maintainer="zhj <zhuceyong180@163.com>" version="1.0"
+LABEL maintainer="zhj <github@zhangSTC>" version="1.0"
 
 RUN set -ex \
     && apk update \
@@ -13,21 +13,24 @@ RUN set -ex \
     && php -m \
     && composer --version
 
-WORKDIR /opt/www/bp-net-novel
+WORKDIR /opt/www/tool-net-novel
 
-COPY . /opt/www/bp-net-novel
+COPY . /opt/www/tool-net-novel
 
 RUN composer install --no-dev --optimize-autoloader --profile \
     && php artisan config:cache \
     && php artisan route:cache \
     && chmod 777 bootstrap/cache \
     && chmod 777 storage \
-    && cat database/bp-net-novel.sql | sqlite3 database/bp-net-novel.db \
-    && echo "* * * * * php /opt/www/net-novel/artisan schedule:run >> /dev/null 2>&1" | tee cronjob \
+    && cat database/tool-net-novel.sql | sqlite3 database/tool-net-novel.db \
+    && echo "* * * * * php /opt/www/tool-net-novel/artisan schedule:run >> /dev/null 2>&1" | tee cronjob \
     && crontab cronjob \
     && crontab -l \
-    && crond
+    && { \
+        echo "crond"; \
+        echo "php artisan serve --host=0.0.0.0 --port=80"; \
+    } | tee start.sh
 
 EXPOSE 80
 
-ENTRYPOINT ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
+ENTRYPOINT ["sh", "start.sh"]

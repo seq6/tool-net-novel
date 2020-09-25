@@ -1,9 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "tool-net-novel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "search and download novels",
     "keywords": [
-        "framework",
+        "novel",
         "laravel"
     ],
     "license": "MIT",
