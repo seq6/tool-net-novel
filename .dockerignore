@@ -6,7 +6,7 @@
 .phpunit.result.cache
 *.gitignore
 .gitattributes
-readme.md
+README.md
 
 Dockerfile
 composer.lock
