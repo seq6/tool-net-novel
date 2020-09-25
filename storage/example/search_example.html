@@ -1,0 +1,486 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>小说搜索</title>
+    <style type="text/css">
+        *{margin:0;padding:0;}
+        body{width:100%;background:rgb(240,240,240);}
+        a:link{color:rgb(41,31,193);text-decoration:none;}
+        a:visited{color:rgb(41,31,193);}
+        a:hover{text-decoration:underline;color:rgb(41,31,193);}
+        .navitor{width:100%;background:rgb(100,100,100);}
+        .navitor .navitor-main{margin-left:20px;}
+        .navitor a{display:inline-block;margin:14px 5px;color:rgb(255,255,255);}
+        .navitor a:hover{color:rgb(240,240,240);}
+        .search{width:100%;text-align:center;padding:20px 0px;margin-top:30px;}
+        .search .search-main{}
+        .search .search-main .keyword{padding:10px;width:360px;outline:none;}
+        .search .search-main button{padding:10px 30px;border:1px solid rgb(200,200,200);background:rgb(100,100,100);color:rgb(255,255,255);}
+        .result-list{padding:80px 0px 0px 120px;}
+        .result-list .result-item{float:left;clear:both;margin:10px 0px;}
+        .result-list .result-item .result-game-item-pic{float:left;margin:0px 10px 0px 0px;}
+        .result-list .result-item .result-game-item-pic img{width:110px;height:150px;}
+        .result-list .result-item .result-game-item-detail{width:100%;font-size:14px;}
+        .result-list .result-item .result-game-item-detail .result-item-title{font-size:18px;}
+        .result-list .result-item .result-game-item-detail .result-item-title a{font-size:18px;text-decoration:none;color:rgb(50,50,50);font-weight:normal;}
+        .result-list .result-item .result-game-item-detail .result-item-title a:visited{}
+        .result-list .result-item .result-game-item-detail .result-item-title a:hover{}
+        .result-list .result-item .result-game-item-detail .result-game-item-info-tag{line-height:22px;}
+        .search-result-page{width:100%;float:left;clear:both;text-align:center;padding:20px 0px;}
+        .search-result-page .search-result-page-main{}
+        .search-result-page .search-result-page-main a{display:inline-block;padding:6px 10px;border:1px solid rgb(100,100,100);font-size:14px;margin:0px 3px;background:rgb(100,100,100);color:rgb(255,255,255);}
+        .search-result-page .search-result-page-main a:visited{}
+        .search-result-page .search-result-page-main a:hover{}
+    </style>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <script type="text/javascript" src="/js/xbqg.js"></script>
+</head>
+<body>
+
+<!--复制到这里-->
+<div class="search">
+    <div class="search-main">
+        <input type="text" name="keyword" id="keyword" class="keyword" value="请输入书名或作者搜索" onblur="if (value ==''){value='请输入书名或作者搜索'}" onfocus="if (value =='请输入书名或作者搜索'){value =''}" />
+        <button type="button" name="search-submit" id="search-submit">搜索小说</button>
+    </div>
+</div>
+<div class="result-list">
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/97_97520/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/97/97520/97520s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/97_97520/" title="修仙要低调" class="result-game-item-title-link" target="_blank">
+                    <span>修仙要低调</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">吾辈修仙当如何。唯低调耳。
+                路见不平，拔腿跑路。珍宝现世，不管不顾。
+                佳人倾心，全当白骨。高人收徒，自认废物。
+                李青云始终坚持破灭一切插旗行为，杜绝因果是非，低调修仙才是王道。</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            赊酒客
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/97_97520/367353.html " class="result-game-item-info-tag-item" target="_blank"> 第四十九章  何以窥冥 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/97_97599/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/97/97599/97599s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/97_97599/" title="修仙有劫" class="result-game-item-title-link" target="_blank">
+                    <span>修仙有劫</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">我命由我，不由天；我命由我，不由仙；我命由我，不由人！少年莫名其妙的变成了一个婴儿，来到一个仙魔汇聚的世界......这里有能够上天入地的仙魔鬼怪，有着一位位追求长生的修仙者......少年在这个世界...</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            陈抖抖
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/97_97599/366984.html " class="result-game-item-info-tag-item" target="_blank"> 第四百一十二章 第一关卡，人性难测 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/97_97057/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/97/97057/97057s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/97_97057/" title="修仙从磕头开始" class="result-game-item-title-link" target="_blank">
+                    <span>修仙从磕头开始</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">“一入仙门深似海，从此节操是路人。”
+                佣兵之王方世玉穿越修真世界，得“磕头”系统，先修武再修仙，叱咤风云，纵横诸天。</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            白芲
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/97_97057/365177.html " class="result-game-item-info-tag-item" target="_blank"> 第116章：孵化小鸟 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/96_96395/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/96/96395/96395s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/96_96395/" title="修仙路人君" class="result-game-item-title-link" target="_blank">
+                    <span>修仙路人君</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">重生在到处是妖魔鬼怪的修仙世界，见天才大师兄因为太过优秀而受奸人所害，从云端跌落凡尘，君不弃默默做了个决定——从此当个修仙路上平平无奇的路人君！</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            来不及忧伤
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/96_96395/362353.html " class="result-game-item-info-tag-item" target="_blank"> 第99章 捏土成牛 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/90_90564/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/90/90564/90564s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/90_90564/" title="修仙之王者归来" class="result-game-item-title-link" target="_blank">
+                    <span>修仙之王者归来</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">修仙大能洪峰，加入华国特案局成为顶尖刺客。七年前他被仇家追杀跳海消失，七年后他带着神秘力量卷土重来，誓要把曾经伤害他家人的仇家统统都踩在脚下。七年前他弱小如蚂，七年后他所向匹敌……本书扮猪吃虎，为爱疯...</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            封旗印轩
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">都市言情</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/90_90564/1075974.html " class="result-game-item-info-tag-item" target="_blank"> 第2302章 真相大白 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/95_95009/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/95/95009/95009s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/95_95009/" title="修仙从长生不老开始" class="result-game-item-title-link" target="_blank">
+                    <span>修仙从长生不老开始</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">作为一条咸鱼，玩游戏从不氪金，总是靠白嫖对抗神豪玩家的云苏，颤抖着双手在笔记本上写下了自己二十岁的生日愿望：长生不老。一觉醒来美梦成真，只是差点被冻哭，修行世界这么冷吗？</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            神龙抄手
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/95_95009/716173.html " class="result-game-item-info-tag-item" target="_blank"> 第二百二十八章 ?诛仙舰队 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/96_96825/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/96/96825/96825s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/96_96825/" title="修仙满级后我重生了" class="result-game-item-title-link" target="_blank">
+                    <span>修仙满级后我重生了</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">
+
+                　　本书又名《偶像是如何破灭的～》　　前世牛逼轰轰的“剑道杀神”千仞奚陨落了。　　因杀孽过重陨落在飞升雷劫之下。　　重活一世，千仞奚发现自己竟来到了灵力浓郁的上古时代，附身到了一个被饿死的小姑娘身...</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            一颗小豌豆呀
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">女频频道</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/96_96825/362167.html " class="result-game-item-info-tag-item" target="_blank"> 第157章 燕鹊城 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/91_91116/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/91/91116/91116s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/91_91116/" title="修仙强者重回都市" class="result-game-item-title-link" target="_blank">
+                    <span>修仙强者重回都市</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">				当年，叶玄狼狈离去，生死未卜。　　如今，叶玄回来了，当君临天下！　　那些辱我，讽刺我的，讥笑我的，你们的噩梦来了。　　红颜知己、老班长、美女老师、公司白领、绝世大明星等将不再是遥不可及！			...</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            我吃大玉米
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">玄幻奇幻</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/91_91116/1075803.html " class="result-game-item-info-tag-item" target="_blank"> 第2311章 天道 </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/97_97346/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/97/97346/97346s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/97_97346/" title="修仙太快怎么办" class="result-game-item-title-link" target="_blank">
+                    <span>修仙太快怎么办</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">别人修仙，都是一步一个脚印，可水青阳不同。他发现前世的神话生灵，可以在这个世界具现，于是他的传奇人生，就从观想出一只九尾狐开始了……他唯一担心的是，自己修行速度太快，吓到这个世界的人怎么办？</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            青草朦胧
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">武侠仙侠</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/97_97346/359788.html " class="result-game-item-info-tag-item" target="_blank"> 第十一章 还有没有天理了？ </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="result-item result-game-item">
+
+        <div class="result-game-item-pic">
+            <a cpos="img" href="https://www.xsbiquge.com/82_82027/" class="result-game-item-pic-link" target="_blank" style="width:110px;height:150px;">
+                <img src="https://www.xsbiquge.com/cover/82/82027/82027s.jpg" class="result-game-item-pic-link-img" onerror="$(this).attr('src', 'https://www.xsbiquge.com/images/nocover.jpg')">
+            </a>
+        </div>
+        <div class="result-game-item-detail">
+            <h3 class="result-item-title result-game-item-title">
+                <a cpos="title" href="https://www.xsbiquge.com/82_82027/" title="修仙界归来" class="result-game-item-title-link" target="_blank">
+                    <span>修仙界归来</span>
+                </a>
+            </h3>
+            <p class="result-game-item-desc">修仙界强者逆天回归都市，纵横花都。超级兵王？这是我小弟！武林高手？那只是个笑话，要么一掌拍死，要么跪地求饶！异能者？不好意思，你也只是个垃圾！还有什么？敬请期待！qq群：513796844（求收藏，求...</p>
+            <div class="result-game-item-info">
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">作者：</span>
+                    <span>
+                            扑大神
+                        </span>
+                </p>
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">类型：</span>
+                    <span class="result-game-item-info-tag-title">都市言情</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">更新时间：</span>
+                    <span class="result-game-item-info-tag-title">2020-09-09</span>
+                </p>
+
+                <p class="result-game-item-info-tag">
+                    <span class="result-game-item-info-tag-title preBold">最新章节：</span>
+                    <a cpos="newchapter" href=" https://www.xsbiquge.com/82_82027/905055.html " class="result-game-item-info-tag-item" target="_blank"> 第2035章 邪修？ </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="search-result-page">
+    <div class="search-result-page-main">
+        <a href="/search.php?keyword=修仙" title="首页">首页</a><a href="/search.php?keyword=修仙" title="上一页">上一页</a><a href="/search.php?keyword=修仙" title="第1页" class="current">1</a><a href="/search.php/修仙/2/" title="第2页">2</a><a href="/search.php/修仙/3/" title="第3页">3</a><a href="/search.php/修仙/4/" title="第4页">4</a><a href="/search.php/修仙/5/" title="第5页">5</a><a href="/search.php/修仙/6/" title="第6页">6</a><a href="/search.php/修仙/7/" title="第7页">7</a><a href="/search.php/修仙/8/" title="第8页">8</a><a href="/search.php/修仙/9/" title="第9页">9</a><a href="/search.php/修仙/10/" title="第10页">10</a><a href="/search.php/修仙/11/" title="第11页">11</a><a href="/search.php/修仙/2/" title="下一页">下一页</a><a href="/search.php/修仙/16/" title="末页">末页</a>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#search-submit').on('click', function () {
+            var url='/search.php?keyword={key}'.replace('{key}',$('#keyword').val());
+            window.location =url ;
+
+        });
+
+    });
+</script>
+<script>footer();</script>
+</body>
+</html>
