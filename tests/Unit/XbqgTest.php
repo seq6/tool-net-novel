@@ -15,7 +15,7 @@ class XbqgTest extends TestCase
     public function testParseSearchHtml()
     {
         try {
-            $html = Storage::get('example/search_example.html');
+            $html = Storage::get('example/xbqg_search_example.html');
             $info = (new XbqgService())->parseSearchHtml($html);
             echo json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             $this->assertTrue(true);
@@ -30,7 +30,7 @@ class XbqgTest extends TestCase
     public function testParseHotListHtml()
     {
         try {
-            $html = Storage::get('example/ph_example.html');
+            $html = Storage::get('example/xbqg_rank_example.html');
             $info = (new XbqgService())->parseHotListHtml($html);
             echo json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             $this->assertTrue(true);
@@ -45,7 +45,7 @@ class XbqgTest extends TestCase
     public function testParseDirHtml()
     {
         try {
-            $html = Storage::get('example/novel_dir_example.html');
+            $html = Storage::get('example/xbqg_novel_example.html');
             $info = (new XbqgService())->parseDirHtml($html);
             echo json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             $this->assertTrue(true);
@@ -60,7 +60,7 @@ class XbqgTest extends TestCase
     public function testParseChapterHtml()
     {
         try {
-            $html = Storage::get('example/novel_chapter_example.html');
+            $html = Storage::get('example/xbqg_chapter_example.html');
             $info = (new XbqgService())->parseChapterHtml($html);
             echo $info;
             $this->assertTrue(true);
