@@ -22,6 +22,11 @@ class NovelSiteFactory
                     self::$containers['xbqg'] = new XbqgService();
                 }
                 return self::$containers['xbqg'];
+            case 'biquku':
+                if (!isset(self::$containers['biquku'])) {
+                    self::$containers['biquku'] = new BiqukuService();
+                }
+                return self::$containers['biquku'];
             default:
                 Logger::error('error site: ' . $site);
                 return null;

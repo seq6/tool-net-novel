@@ -6,6 +6,7 @@
             <div class="form-group">
                 <select class="selectpicker" name="site" data-width="fit">
                     <option value="xbqg">XBQG</option>
+                    <option value="biquku">biquku</option>
                 </select>
                 <div class="input-group">
                     <input type="text" name="keyword" class="form-control" maxlength="20">
@@ -41,10 +42,10 @@
             for (let i = 0; i < novels.length; i++) {
                 $('#novel-table').append(`
                 <tr>
-                    <td>「${novels[i]['category']}」</td>
+                    <td>「${novels[i]['category'] || '----'}」</td>
                     <td><a href="${novels[i]['href']}" target="_blank">${novels[i]['title']}</a></td>
                     <td>${novels[i]['author']}</td>
-                    <td><small>${novels[i]['intro']}</small></td>
+                    <td><small>${novels[i]['intro'] || '-'}</small></td>
                     <td><a href="${novels[i]['latest_chapter_url']}" target="_blank">${novels[i]['latest_chapter_name']}</a></td>
                     <td>
                     ${novels[i]['is_collect'] === 1 ? `

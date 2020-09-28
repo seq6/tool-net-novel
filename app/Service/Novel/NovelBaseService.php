@@ -35,7 +35,7 @@ abstract class NovelBaseService
     protected function spiderHtml(string $uri, array $params = []): ?string
     {
         try {
-            $url = $this->baseUri . trim($uri, '/');
+            $url = $this->baseUri . ltrim($uri, '/');
             Logger::info(sprintf('request url: %s, params: %s', $url, json_encode($params)));
             $resp = Util::getHttpClient()->request(
                 'GET',

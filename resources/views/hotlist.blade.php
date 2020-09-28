@@ -6,6 +6,7 @@
             <div class="col-sm-2">
                 <select class="selectpicker pull-right" title="请选择站点" name="site" data-width="fit" id="site-select">
                     <option value="xbqg">XBQG</option>
+                    <option value="biquku">biquku</option>
                 </select>
             </div>
             <div class="col-sm-10">
@@ -34,12 +35,12 @@
             for (let i = 0; i < novels.length; i++) {
                 $('#novel-table').append(`
                     <tr>
-                        <td>「${novels[i]['category']}」</td>
+                        <td>「${novels[i]['category'] || '----'}」</td>
                         <td>
                             <a href="${novels[i]['href']}" target="_blank">${novels[i]['title']}</a>
                         </td>
-                        <td>${novels[i]['author']}</td>
-                        <td>${novels[i]['latest_chapter_name']}</td>
+                        <td>${novels[i]['author'] || '----'}</td>
+                        <td>${novels[i]['latest_chapter_name'] || '----'}</td>
                         <td>
                         ${novels[i]['is_collect'] === 1 ? `
                         <button type="button" class="btn btn-sm" disabled>已收藏</button>
