@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-sm-2">
                 <select class="selectpicker pull-right" title="请选择站点" name="site" data-width="fit" id="site-select">
-                    <option value="xbqg">XBQG</option>
-                    <option value="biquku">biquku</option>
+                    <option value="xbqg">新笔趣阁</option>
+                    <option value="biquku">笔趣库</option>
                 </select>
             </div>
             <div class="col-sm-10">

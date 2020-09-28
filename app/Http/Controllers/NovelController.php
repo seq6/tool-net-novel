@@ -108,7 +108,7 @@ class NovelController extends Controller
     }
 
     /**
-     * 获取收藏书籍
+     * 书架
      *
      * @return JsonResponse
      */
@@ -317,5 +317,18 @@ class NovelController extends Controller
         Logger::info('delete novel id=' . $id);
 
         return ApiHelper::apiSuccess();
+    }
+
+    /**
+     * 查询小说是否已被收藏
+     *
+     * @param Request $req
+     * @return JsonResponse
+     */
+    public function isCollectedBatch(Request $req)
+    {
+        $site = trim($req->get('site'));
+        $uris = explode(';', $req->get('uris'));
+        return ApiHelper::apiSuccess(['collected' => Novel::existBatch($site, $uris)]);
     }
 }

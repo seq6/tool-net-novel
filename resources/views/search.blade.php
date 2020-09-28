@@ -5,8 +5,8 @@
         <form class="form-inline" onsubmit="return submitForm()">
             <div class="form-group">
                 <select class="selectpicker" name="site" data-width="fit">
-                    <option value="xbqg">XBQG</option>
-                    <option value="biquku">biquku</option>
+                    <option value="xbqg">新笔趣阁</option>
+                    <option value="biquku">笔趣库</option>
                 </select>
                 <div class="input-group">
                     <input type="text" name="keyword" class="form-control" maxlength="20">
@@ -107,7 +107,6 @@
                         bootbox.alert('搜索失败: ' + data.message);
                     }
                     changeSearchStatus(false);
-
                 },
                 error: function (e) {
                     bootbox.alert('搜索失败, error: ' + e.responseText);

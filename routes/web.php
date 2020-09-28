@@ -34,6 +34,7 @@ Route::prefix('/novel')->group(
         Route::get('/sync/process', 'NovelController@syncProcess');
         Route::get('/download/zip', 'NovelController@downloadZip');
         Route::get('/download/txt', 'NovelController@downloadTxt');
+        Route::get('/collected', 'NovelController@isCollectedBatch');
     }
 );
 
