@@ -7,7 +7,7 @@ use App\Service\Logger;
 use DOMDocument;
 
 /**
- * xinbiquge
+ * 新笔趣阁
  *
  * Class XbqgService
  * @package App\Service\Novel
@@ -68,7 +68,7 @@ class XbqgService extends NovelBaseService
     public function parseHotListHtml(string $html): ?array
     {
         $dom = new DOMDocument();
-        if (!$dom->loadHTML($html)) {
+        if (!@$dom->loadHTML($html)) {
             return null;
         }
 
@@ -132,16 +132,15 @@ class XbqgService extends NovelBaseService
     }
 
     /**
-     * 解析章节目录html
+     * 解析小说基本信息及章节目录html
      *
      * @param string $html
      * @return array|null
      */
     public function parseDirHtml(string $html): ?array
     {
-        $html = str_replace(['<p>', '</p>'], '', $html);
         $dom = new DOMDocument();
-        if (!$dom->loadHTML($html)) {
+        if (!@$dom->loadHTML($html)) {
             return null;
         }
 
@@ -228,7 +227,7 @@ class XbqgService extends NovelBaseService
     public function parseChapterHtml(string $html): ?string
     {
         $dom = new DOMDocument();
-        if (!$dom->loadHTML($html)) {
+        if (!@$dom->loadHTML($html)) {
             return null;
         }
 
@@ -258,7 +257,7 @@ class XbqgService extends NovelBaseService
     public function parseSearchHtml(string $html): ?array
     {
         $dom = new DOMDocument();
-        if (!$dom->loadHTML($html)) {
+        if (!@$dom->loadHTML($html)) {
             Logger::error('load html error.');
             return null;
         }

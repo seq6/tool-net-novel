@@ -10,6 +10,12 @@ use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
+/**
+ * 笔趣阁
+ *
+ * Class BiqukuService
+ * @package App\Service\Novel
+ */
 class BiqukuService extends NovelBaseService
 {
     public $baseUri = 'http://www.biquku.la/';
@@ -78,10 +84,16 @@ class BiqukuService extends NovelBaseService
         return $this->parseHotListHtml($html);
     }
 
+    /**
+     * 解析热门榜单html
+     *
+     * @param string $html
+     * @return array|null
+     */
     public function parseHotListHtml(string $html): ?array
     {
         $dom = new DOMDocument();
-        if (!$dom->loadHTML($html)) {
+        if (!@$dom->loadHTML($html)) {
             return null;
         }
 
@@ -111,6 +123,12 @@ class BiqukuService extends NovelBaseService
         return $list;
     }
 
+    /**
+     * 解析小说基本信息及章节目录html
+     *
+     * @param string $html
+     * @return array[]|null
+     */
     public function parseDirHtml(string $html): ?array
     {
         $dom = new DOMDocument();
@@ -193,6 +211,12 @@ class BiqukuService extends NovelBaseService
         return $info;
     }
 
+    /**
+     * 解析章节正文html
+     *
+     * @param string $html
+     * @return string|null
+     */
     public function parseChapterHtml(string $html): ?string
     {
         $dom = new DOMDocument();
@@ -217,6 +241,12 @@ class BiqukuService extends NovelBaseService
         return implode("\n", $lines);
     }
 
+    /**
+     * 解析搜索页html
+     *
+     * @param string $html
+     * @return array|null
+     */
     public function parseSearchHtml(string $html): ?array
     {
         $dom = new DOMDocument();

@@ -45,7 +45,7 @@
                     <td>「${novels[i]['category'] || '----'}」</td>
                     <td><a href="${novels[i]['href']}" target="_blank">${novels[i]['title']}</a></td>
                     <td>${novels[i]['author']}</td>
-                    <td><small>${novels[i]['intro'] || '-'}</small></td>
+                    <td><small>${novels[i]['intro'] || '----'}</small></td>
                     <td><a href="${novels[i]['latest_chapter_url']}" target="_blank">${novels[i]['latest_chapter_name']}</a></td>
                     <td>
                     ${novels[i]['is_collect'] === 1 ? `

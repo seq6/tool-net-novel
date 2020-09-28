@@ -1,12 +1,9 @@
 <?php
 
-
 namespace Tests\Unit;
-
 
 use App\Service\Logger;
 use App\Service\Util;
-use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
