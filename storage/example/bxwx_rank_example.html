@@ -1,0 +1,888 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+    <link rel="shortcut icon" href="https://www.baidu.com/favicon.ico" type="image/x-icon" />
+    
+
+       <script type="text/javascript" src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script type="text/javascript">
+        var siteDomain = '';
+        function getHost(url) {
+            var host = "null"; if (typeof url == "undefined" || null == url)
+                url = window.location.href; var regex = /(.*\:\/\/[^\/]*).*/; var match = url.match(regex); if (typeof match != "undefined" && null != match)
+                    host = match[1]; return host;
+        }
+        jQuery.extend({
+            setCookie: function (name, value, Days) {
+                if (Days == null || Days == "")
+                    Days = 30; var exp = new Date(); exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000); var strDomain = ''; if (siteDomain != '')
+                        strDomain = ";domain=" + siteDomain; value = encodeURI(value); document.cookie = name + "=" + value + ";expires=" + exp.toGMTString() + strDomain + ";path=/";
+            }, getCookie: function (NameOfCookie) {
+                if (document.cookie.length > 0) { begin = document.cookie.indexOf(NameOfCookie + "="); if (begin != -1) { begin += NameOfCookie.length + 1; end = document.cookie.indexOf(";", begin); if (end == -1) end = document.cookie.length; var value = document.cookie.substring(begin, end); value = decodeURI(value); return value; } }
+                return null;
+            }
+        });
+    </script>
+
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="applicable-device" content="pc" />
+
+    <meta http-equiv="mobile-agent" content="format=xhtml;url=http://m.bxwx666.org/ph/1.htm" />
+
+
+    
+    <link href="/css/main.css?r=413" type="text/css" rel="stylesheet" />
+    
+    <title>笔下文学电子书排行榜,第1页</title>
+    <meta name="keywords" content="笔下文学电子书排行榜,第1页" />
+    <meta name="description" content="笔下文学电子书排行榜,第1页" />
+
+    
+<script type="text/javascript">
+    //浏览器检查：非PC=true,PC=false
+    function BrowserCheck() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            PageRedirect();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    var IsMobile = true; //是否是手机
+    function IsMobileInit() {
+        IsMobile = BrowserCheck();
+    }
+    function PageRedirect() {
+        window.location.href = window.location.href.replace('www.', 'm.');
+    }
+    IsMobileInit();
+</script>
+<script type="text/javascript">
+    var LookNum = 1;
+    var MaxNum = 10;
+    function JiShu() {
+        LookNum = $.getCookie('LookNum');
+        if (LookNum == null || LookNum == '') {
+            LookNum = 1;
+            $.setCookie('LookNum', LookNum);
+        }
+        else {
+            var n = parseInt(LookNum);
+            if (n < MaxNum) {
+                n = n + 1;
+            }
+            else {
+                n = 1;
+            }
+            LookNum = n;
+            $.setCookie('LookNum', LookNum);
+        }
+    }
+    JiShu();
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+        
+
+
+<!--登陆Start-->
+<div class="ywtop">
+    <div class="ywtop_con">
+        <div class="nri name1">
+            <div class="cc">
+                <div class="txt">
+                    账号：</div>
+                <div class="inp">
+                    <input type="text" id="myusername"></div>
+            </div>
+            <div class="cc">
+                <div class="txt">
+                    密码：</div>
+                <div class="inp">
+                    <input type="password" id="mypassword"></div>
+            </div>
+            <div class="frii">
+                <input id="denglu" type="button" value="登 录" style="cursor: pointer;"></div>&nbsp;
+            <div class="ccc">
+                <div class="txtt">
+                    <a rel="nofollow" href="/usergetpass.aspx">忘记密码</a></div>
+                <div class="txtt">
+                    <a rel="nofollow" href="/userregister.aspx">用户注册</a></div>
+            </div>
+        </div>
+        <div class="nri name2" style="display: none;">
+            Hi,<a rel="nofollow" target="_top" id="name1">cuizhanjun1981</a>&nbsp;&nbsp; <a rel="nofollow" target="_top" href="/usershujia.aspx">
+                我的书架</a> | <a rel="nofollow" target="_self" style="cursor: pointer;" id="tuichu">退出登录</a>&nbsp;</div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#tuichu').click(function () {
+        $.setCookie('username', '', -3000);
+        $.setCookie('userid', '', -3000);
+        window.location.href = window.location.href;
+    });
+    $('#denglu').click(function () {
+        var username = $('#myusername').val();
+        
+        var pwd = $('#mypassword').val();
+        if (username == '' || pwd == '') {
+            alert('请填写用户名和密码！');
+            return;
+        }
+        username = escape(username);
+        $.ajax({
+            type: 'POST',
+            url: '/ashx/user.ashx',
+            data: { 'action': 'checkUserLogin', 'username': username, 'pwd': pwd },
+            success: function (userid) {
+                if (userid == "0") {
+                    alert('密码错误，登录失败！');
+                }
+                else {
+                    if (userid > 0)
+                        Login(username, userid);
+                }
+            }
+        });
+    });
+    function Login(username, userid) {
+        $.setCookie('username', username, 3000);
+        $.setCookie('userid', userid, 3000);
+        ShowUserName();
+    }
+    function ShowUserName() {
+        var username = $.getCookie('username');
+        var userid = $.getCookie('userid');
+        if (username == '' || userid == '' || username == null || userid == null) {
+            $('.name1').css('display', 'block');
+            $('.name2').css('display', 'none');
+        }
+        else {
+
+            $('.name1').css('display', 'none');
+            $('.name2').css('display', 'block');
+
+            $('#name1').html(username);
+        }
+
+    }
+
+    ShowUserName();
+</script>
+<!--登陆End-->
+
+<div class="header">
+    <div class="header_logo">
+        <h1 id="header211">
+            笔下文学
+        </h1>
+    </div>
+    <div class="header_search">
+        <form rel="nofollow" action="/search.aspx" method="get">
+        <input id="bookname" class="search" name="bookname" type="text" value="请输入书名或作者名" />
+        <input id="sss" type="submit" value="搜索" style="width: 96px; line-height: 28px; height: 28px;">
+        <script type="text/javascript">
+            $('#bookname').focus(function () {
+                var bookname = $(this).val();
+                if (bookname == '请输入书名或作者名') {
+                    $(this).val('');
+                }
+            });
+        </script>
+        </form>
+    </div>
+</div>
+
+<div class="nav">
+    <ul>
+        <li><a id="index" href="http://www.bxwx666.org/ph/1.htm">首页</a></li>
+        <li><a id="paihang" rel="nofollow"  href="http://www.bxwx666.org/ph/1.htm">热门排行</a></li>
+        <li><a id="leixing1"  href="http://www.bxwx666.org/type/1/1.htm">异界大陆</a></li>
+        <li><a id="leixing2"  href="http://www.bxwx666.org/type/2/1.htm">西方奇幻</a></li>
+        <li><a id="leixing3"  href="http://www.bxwx666.org/type/3/1.htm">武侠仙侠</a></li>
+        <li><a id="leixing4"  href="http://www.bxwx666.org/type/4/1.htm">都市娱乐</a></li>
+        <li><a id="leixing5"  href="http://www.bxwx666.org/type/5/1.htm">历史军事</a></li>
+        <li><a id="leixing6"  href="http://www.bxwx666.org/type/6/1.htm">科幻游戏</a></li>
+        <li><a id="leixing7"  href="http://www.bxwx666.org/type/7/1.htm">竞技同人</a></li>
+        <li><a id="leixing8"  href="http://www.bxwx666.org/type/8/1.htm">悬疑灵异</a></li>
+        <li><a id="leixing9"  href="http://www.bxwx666.org/type/9/1.htm">玄幻其他</a></li>
+        <li style="display:none;"><a id="update" rel="nofollow"  href="http://www.bxwx666.org/zx/1.htm">最新更新</a></li>
+    </ul>
+</div>
+
+        
+    <div id="main" style="margin-top: 10px;">
+        <div id="newscontent">
+            <div class="l">
+                <ul>
+                    
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/216967/" target="_blank">元尊</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/216967/4262537.htm" target="_blank">第一千三百七十一章  萧天玄</a></span> 
+<span class="s4">天蚕土豆</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/217658/" target="_blank">牧神记</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/217658/3244733.htm" target="_blank">宅猪新书，《临渊行》已经上传</a></span> 
+<span class="s4">宅猪</span><span class="s5">2020/4/14 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/217647/" target="_blank">伏天氏</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/217647/4280832.htm" target="_blank">第2105章 方盖</a></span> 
+<span class="s4">净无痕</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/2222/" target="_blank">武炼巅峰</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/2222/4262474.htm" target="_blank">第五千五百一十六章 不甘心啊</a></span> 
+<span class="s4">莫默</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/213815/" target="_blank">剑来</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/213815/6517539.htm" target="_blank">第八百零六章 青白之争</a></span> 
+<span class="s4">烽火戏诸侯</span><span class="s5">2020/9/26 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/61496/" target="_blank">逆天邪神</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/61496/4268522.htm" target="_blank">第1779章 狂魔（下）</a></span> 
+<span class="s4">火星引力</span><span class="s5">2020/9/22 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/215717/" target="_blank">重生之都市仙尊</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/215717/983100.htm" target="_blank">完结感言</a></span> 
+<span class="s4">遥远的星辰</span><span class="s5">2019/11/13</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/216809/" target="_blank">凡人修仙之仙界篇</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/216809/3387175.htm" target="_blank">新书《大梦主》上架感言</a></span> 
+<span class="s4">忘语</span><span class="s5">2020/7/31 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/263450/" target="_blank">全球高武</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/263450/2980171.htm" target="_blank">新书发布，求收藏推荐！</a></span> 
+<span class="s4">老鹰吃小鸡</span><span class="s5">2020/3/30 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/175943/" target="_blank">万古神帝</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/175943/4392959.htm" target="_blank">第二千八百九十四章 我外公也是这个意思</a></span> 
+<span class="s4">飞天鱼(书坊)</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/63906/" target="_blank">修罗武神</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/63906/1255620.htm" target="_blank">青玄天外传（12）</a></span> 
+<span class="s4">善良的蜜蜂</span><span class="s5">2020/7/9 2</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/210394/" target="_blank">圣墟</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/210394/4056958.htm" target="_blank">第1566章 路尽绝代风姿</a></span> 
+<span class="s4">辰东</span><span class="s5">2020/7/29 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/161337/" target="_blank">修真聊天群</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/161337/3782059.htm" target="_blank">新书上传啦，《万界点名册》</a></span> 
+<span class="s4">圣骑士的传说</span><span class="s5">2020/8/10 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/319198/" target="_blank">最佳女婿</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/319198/3912466.htm" target="_blank">第1818章 死也要死的明白</a></span> 
+<span class="s4">林羽江颜</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/64255/" target="_blank">最强狂兵</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/64255/3207066.htm" target="_blank">第4660章 被逼无奈！</a></span> 
+<span class="s4">烈焰滔滔</span><span class="s5">2020/7/22 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/251429/" target="_blank">全职法师</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/251429/5403606.htm" target="_blank">第3224章 落日神殿</a></span> 
+<span class="s4">乱(书坊)</span><span class="s5">2020/1/26 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/590/" target="_blank">校花的贴身高手</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/590/8141972.htm" target="_blank">第8965章</a></span> 
+<span class="s4">鱼人二代</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/263336/" target="_blank">三寸人间</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/263336/3238957.htm" target="_blank">第1117章 我一成战力镇压你！</a></span> 
+<span class="s4">耳根</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/349893/" target="_blank">豪婿</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/349893/4396051.htm" target="_blank">第一千六百八十九章 小白</a></span> 
+<span class="s4">绝人</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/61245/" target="_blank">帝霸</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/61245/4435354.htm" target="_blank">第4126章古杨贤者</a></span> 
+<span class="s4">厌笔萧生</span><span class="s5">2020/9/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/251289/" target="_blank">诡秘之主</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/251289/3685464.htm" target="_blank">不是诈尸，不是遭了阿蒙</a></span> 
+<span class="s4">爱潜水的乌贼</span><span class="s5">2020/9/12 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/263207/" target="_blank">明朝败家子</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/263207/2456067.htm" target="_blank">第一千七百六十九章：平天下（大结局）</a></span> 
+<span class="s4">上山打老虎额</span><span class="s5">2019/12/30</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/355917/" target="_blank">神级龙卫</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/355917/3758823.htm" target="_blank">第4026章 金身圣体（上）</a></span> 
+<span class="s4">花幽山月</span><span class="s5">2020/6/13 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/319330/" target="_blank">天降巨富</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/319330/10736746.htm" target="_blank">第四百七十七章 刘星身边的高手</a></span> 
+<span class="s4">陆原居</span><span class="s5">2020/6/12 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/167372/" target="_blank">九星霸体诀</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/167372/4261560.htm" target="_blank">第三千九百二十九章 出虎口，入狼喉</a></span> 
+<span class="s4">平凡魔术师</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/216425/" target="_blank">大道朝天</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/216425/3679465.htm" target="_blank">后记（窗外的湖）</a></span> 
+<span class="s4">猫腻</span><span class="s5">2020/8/21 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/214984/" target="_blank">汉乡</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/214984/2008110.htm" target="_blank">《汉乡》完结，敬请移步《明天下》</a></span> 
+<span class="s4">孑与2</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/217528/" target="_blank">秦吏</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/217528/2267931.htm" target="_blank">新书《汉阙》已发，希望大家移步收藏一下。</a></span> 
+<span class="s4">七月新番</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/215419/" target="_blank">都市之最强狂兵</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/215419/3484505.htm" target="_blank">第5198章 无法抑制的恐惧</a></span> 
+<span class="s4">大红大紫</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/189308/" target="_blank">人皇纪</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/189308/4258820.htm" target="_blank">第二十三章 初次登场，大唐车弩！</a></span> 
+<span class="s4">皇甫奇</span><span class="s5">2020/8/24 </span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/218041/" target="_blank">学霸的黑科技系统</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/218041/3219986.htm" target="_blank">番外1 后日谈</a></span> 
+<span class="s4">晨星ll</span><span class="s5">2020/5/30 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/60265/" target="_blank">儒道至圣</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/60265/4966826.htm" target="_blank">新书《众神世界》发布！</a></span> 
+<span class="s4">永恒之火</span><span class="s5">2019/12/18</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/214764/" target="_blank">超神机械师</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/214764/4147079.htm" target="_blank">1396 重排座次，空降大哥</a></span> 
+<span class="s4">齐佩甲</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/263280/" target="_blank">天下第九</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/263280/10946553.htm" target="_blank">第一三五七章 我们回家吧 （大结局）</a></span> 
+<span class="s4">鹅是老五</span><span class="s5">2020/8/19 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/257231/" target="_blank">我的绝色总裁未婚妻</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/257231/3954357.htm" target="_blank">第4246章 龙蛇仙宫</a></span> 
+<span class="s4">花幽山月</span><span class="s5">2020/9/27 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/269859/" target="_blank">史上最强赘婿</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/269859/2861490.htm" target="_blank">新书《史上第一密探》已肥了！</a></span> 
+<span class="s4">沉默的糕点</span><span class="s5">2020/2/18 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/214955/" target="_blank">飞剑问道</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/214955/1898082.htm" target="_blank">番茄的新书《沧元图》已经正式上传！新书需要大家的支持~~~</a></span> 
+<span class="s4">我吃西红柿</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[历史军事]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/263994/" target="_blank">民国谍影</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/263994/3553948.htm" target="_blank">完本感言</a></span> 
+<span class="s4">寻青藤</span><span class="s5">2020/4/14 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/217366/" target="_blank">正道潜龙</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/217366/2179461.htm" target="_blank">后记 揭匾远东商会</a></span> 
+<span class="s4">伪戒</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/184015/" target="_blank">狼与兄弟</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/184015/6530177.htm" target="_blank">第五千两百三十八章 一起收拾</a></span> 
+<span class="s4">纯银耳坠</span><span class="s5">2020/9/28 </span></li>
+
+                </ul>
+                
+<div class="pagerdiv">
+<ul class="pager">
+<li><a style="width: 30px;" href="http://www.bxwx666.org/ph/1.htm">首页</a></li>
+
+<li><a href="http://www.bxwx666.org/ph/1.htm"  class="selected">1</a></li>
+<li><a href="http://www.bxwx666.org/ph/2.htm" >2</a></li>
+<li><a href="http://www.bxwx666.org/ph/3.htm" >3</a></li>
+<li><a href="http://www.bxwx666.org/ph/4.htm" >4</a></li>
+<li><a href="http://www.bxwx666.org/ph/5.htm" >5</a></li>
+<li><a href="http://www.bxwx666.org/ph/6.htm" >6</a></li>
+<li><a href="http://www.bxwx666.org/ph/7.htm" >7</a></li>
+<li><a href="http://www.bxwx666.org/ph/8.htm" >8</a></li>
+<li><a href="http://www.bxwx666.org/ph/9.htm" >9</a></li>
+<li><a href="http://www.bxwx666.org/ph/10.htm" >10</a></li>
+<li><a href="http://www.bxwx666.org/ph/11.htm" >11</a></li>
+<li><a style="width: 30px;" href="http://www.bxwx666.org/ph/11.htm">末页 </a></li>
+</ul>
+</div>
+            </div>
+            
+<div class="r">
+    <h2>
+        最近浏览的小说(30本)</h2>
+    <ul id="userbook">
+    </ul>
+    <h2>
+        <a href="http://www.bxwx666.org/ph/1.htm">阅读排行榜 </a>
+    </h2>
+    <ul>
+        
+<li>
+    <span class="s1">[1]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/216967/">元尊</a></span> 
+    <span class="s5">天蚕土豆</span>
+</li>
+
+<li>
+    <span class="s1">[2]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/217647/">伏天氏</a></span> 
+    <span class="s5">净无痕</span>
+</li>
+
+<li>
+    <span class="s1">[3]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/2222/">武炼巅峰</a></span> 
+    <span class="s5">莫默</span>
+</li>
+
+<li>
+    <span class="s1">[4]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/213815/">剑来</a></span> 
+    <span class="s5">烽火戏诸侯</span>
+</li>
+
+<li>
+    <span class="s1">[5]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61496/">逆天邪神</a></span> 
+    <span class="s5">火星引力</span>
+</li>
+
+<li>
+    <span class="s1">[6]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/175943/">万古神帝</a></span> 
+    <span class="s5">飞天鱼(书坊)</span>
+</li>
+
+<li>
+    <span class="s1">[7]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/319198/">最佳女婿</a></span> 
+    <span class="s5">林羽江颜</span>
+</li>
+
+<li>
+    <span class="s1">[8]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/590/">校花的贴身高手</a></span> 
+    <span class="s5">鱼人二代</span>
+</li>
+
+<li>
+    <span class="s1">[9]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263336/">三寸人间</a></span> 
+    <span class="s5">耳根</span>
+</li>
+
+<li>
+    <span class="s1">[10]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/349893/">豪婿</a></span> 
+    <span class="s5">绝人</span>
+</li>
+
+<li>
+    <span class="s1">[11]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61245/">帝霸</a></span> 
+    <span class="s5">厌笔萧生</span>
+</li>
+
+<li>
+    <span class="s1">[12]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/167372/">九星霸体诀</a></span> 
+    <span class="s5">平凡魔术师</span>
+</li>
+
+<li>
+    <span class="s1">[13]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/215419/">都市之最强狂兵</a></span> 
+    <span class="s5">大红大紫</span>
+</li>
+
+<li>
+    <span class="s1">[14]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/214764/">超神机械师</a></span> 
+    <span class="s5">齐佩甲</span>
+</li>
+
+<li>
+    <span class="s1">[15]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/257231/">我的绝色总裁未婚妻</a></span> 
+    <span class="s5">花幽山月</span>
+</li>
+
+<li>
+    <span class="s1">[16]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/184015/">狼与兄弟</a></span> 
+    <span class="s5">纯银耳坠</span>
+</li>
+
+<li>
+    <span class="s1">[17]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263755/">我有一座恐怖屋</a></span> 
+    <span class="s5">我会修空调</span>
+</li>
+
+<li>
+    <span class="s1">[18]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/149821/">邪王追妻：废材逆天小姐</a></span> 
+    <span class="s5">苏小暖</span>
+</li>
+
+<li>
+    <span class="s1">[19]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/216223/">轮回乐园</a></span> 
+    <span class="s5">那一只蚊子</span>
+</li>
+
+<li>
+    <span class="s1">[20]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/209275/">永恒国度</a></span> 
+    <span class="s5">孤独漂流</span>
+</li>
+
+<li>
+    <span class="s1">[21]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/188817/">万道剑尊</a></span> 
+    <span class="s5">打死都要钱</span>
+</li>
+
+<li>
+    <span class="s1">[22]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/149646/">极品全能学生</a></span> 
+    <span class="s5">花都大少</span>
+</li>
+
+<li>
+    <span class="s1">[23]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263210/">大医凌然</a></span> 
+    <span class="s5">志鸟村</span>
+</li>
+
+<li>
+    <span class="s1">[24]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/214502/">重生军工子弟</a></span> 
+    <span class="s5">葫芦村人</span>
+</li>
+
+<li>
+    <span class="s1">[25]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61161/">神话版三国</a></span> 
+    <span class="s5">坟土荒草</span>
+</li>
+
+<li>
+    <span class="s1">[26]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/187520/">永恒圣帝</a></span> 
+    <span class="s5">千寻月</span>
+</li>
+
+<li>
+    <span class="s1">[27]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/358529/">我老婆是冰山女总裁</a></span> 
+    <span class="s5">花幽山月</span>
+</li>
+
+<li>
+    <span class="s1">[28]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/169917/">都市奇门医圣</a></span> 
+    <span class="s5">一念</span>
+</li>
+
+<li>
+    <span class="s1">[29]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/251388/">黎明之剑</a></span> 
+    <span class="s5">远瞳</span>
+</li>
+
+<li>
+    <span class="s1">[30]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/264098/">诸天最强大佬</a></span> 
+    <span class="s5">七只跳蚤</span>
+</li>
+
+    </ul>
+</div>
+<br />
+<br />
+<script type="text/javascript">
+    showUserbook();
+    function showUserbook() {
+        var userbook = $.getCookie('userbook');
+
+        var html = '';
+        var n = 0;
+        if (userbook != '' && userbook != null) {
+            var booklist = userbook.split('｜');
+            for (var i = 0; i < booklist.length; i++) {
+                n++;
+                if (booklist[i] == '')
+                    continue;
+                var info = booklist[i].split('＃');
+                html += '<li><span class="s1">' + n + '.</span> <span class="s2"><a href="/txt/' + info[0] + '/">' + info[1] + '</a></span> <span class="s5" onclick="delxs(' + info[0] + ')">[删]</span></li>';
+            }
+        }
+        $('#userbook').html(html + '<li><a style="float:right;position:relative;left:-15px;font-size:12px;"  onclick="delall()">[清空所有]</a></li>');
+    }
+    function delxs(xsid) {
+        var userbook = $.getCookie('userbook');
+        var n = 0;
+        var temp = '';
+        if (userbook != '') {
+            var booklist = userbook.split('｜');
+            for (var i = 0; i < booklist.length; i++) {
+                if (booklist[i] == '')
+                    continue;
+                var info = booklist[i].split('＃');
+                if (info[0] == xsid) {
+
+                }
+                else {
+                    n++;
+                    if (n == 1)
+                        temp += booklist[i];
+                    else
+                        temp += '｜' + booklist[i];
+                }
+            }
+            $.setCookie('userbook', temp, 3000);
+        }
+        showUserbook();
+    }
+    function delall() {
+        $.setCookie('userbook', '', 3000);
+        showUserbook();
+    }
+</script>
+
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <!--最新更新end-->
+    <script type="text/javascript">
+        //菜单高亮
+        $('#paihang').css('color', 'red');
+    </script>
+
+        <!--页面主体end-->
+        
+
+<!--页尾end-->
+
+<script>
+    var cuid = '';
+    function TianchongCuid() {
+        cuid = $.getCookie('cuid');
+        if (cuid == null || cuid == '') {
+            cuid = CreateCuid();
+            $.setCookie('cuid', cuid, 3000);
+        }
+    }
+    function CreateCuid() {
+        var d = new Date();
+        var cuid0 = window.location.host;
+        var cuid1 = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "_" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds();
+        var cuid2 = parseInt(Math.random() * 1000 + 1);
+        return cuid0 + "_" + cuid1 + "_" + cuid2;
+    }
+    try {
+        if (cuid == null || cuid == '')
+            TianchongCuid();
+    }
+    catch (ex) {
+
+    }
+</script>
+
+<div id="tongjidiv" style="display:none;">
+
+<!--cnzz统计-->
+    <script>
+        $(function () {
+            // 延迟CNZZ统计, 以免影响页面载入
+            var cz = document.createElement("script");
+            cz.src = "https://s19.cnzz.com/z_stat.php?id=1274985287&web_id=1274985287";
+            document.getElementById('tongjidiv').appendChild(cz);
+        });
+
+  </script>
+    
+    </div>
+<script>
+
+</script>
+<script>
+var time = new Date();
+var min = time.getSeconds();
+if (min % 2 == 1) {
+    document.writeln("<script src=\'\/\/pc.cathaycentury.com\/pc\/rich-tf.js\' id=\'richid\' data=\'s=3017\'><\/script>");
+}
+else {
+    var qj_uid = 710255; var qj_tid = 33; var qj_maxw = 0; var showos = 2;
+    document.writeln("<script charset=\'utf-8\' src=\'https:\/\/vj.jisuoping.com\/o7_r.js\'><\/script>");
+}
+</script>
+
+
+
+
+<div style="margin: auto; width: 970px;">
+<br />
+<div id="footer1">
+    <div id="footer11">
+        <div id="footer111">
+            
+        </div>
+        <div id="footer112">
+            
+                    <a href="http://m.bxwx666.org">笔下文学(手机版)</a>
+                    
+            &nbsp;<a style="display:none;" href="/u.aspx">章节更新</a>
+        </div>
+    </div>
+    <div id="footer12">
+        所有小说由网友上传，如有侵犯版权，请来信告知，本站立即予以处理。
+        <input type="hidden" value="2020-09-28 16:35:34">
+    </div>
+
+
+
+</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+    </div>
+</body>
+</html>

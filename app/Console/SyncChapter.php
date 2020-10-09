@@ -37,7 +37,7 @@ class SyncChapter extends Command
                 $novel = $novels[$chapter['novel_id']];
                 $service = NovelSiteFactory::getService($novel['site']);
                 $data = $service->novelChapter($chapter['uri']);
-                if (empty($data)) {
+                if (is_null($data)) {
                     continue;
                 }
                 NovelStorage::updateText($chapter, $data);

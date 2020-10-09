@@ -1,0 +1,1285 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+    <link rel="shortcut icon" href="https://www.baidu.com/favicon.ico" type="image/x-icon" />
+    
+
+       <script type="text/javascript" src="https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/jquery/jquery-1.10.2.min_65682a2.js"></script>
+    <script type="text/javascript">
+        var siteDomain = '';
+        function getHost(url) {
+            var host = "null"; if (typeof url == "undefined" || null == url)
+                url = window.location.href; var regex = /(.*\:\/\/[^\/]*).*/; var match = url.match(regex); if (typeof match != "undefined" && null != match)
+                    host = match[1]; return host;
+        }
+        jQuery.extend({
+            setCookie: function (name, value, Days) {
+                if (Days == null || Days == "")
+                    Days = 30; var exp = new Date(); exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000); var strDomain = ''; if (siteDomain != '')
+                        strDomain = ";domain=" + siteDomain; value = encodeURI(value); document.cookie = name + "=" + value + ";expires=" + exp.toGMTString() + strDomain + ";path=/";
+            }, getCookie: function (NameOfCookie) {
+                if (document.cookie.length > 0) { begin = document.cookie.indexOf(NameOfCookie + "="); if (begin != -1) { begin += NameOfCookie.length + 1; end = document.cookie.indexOf(";", begin); if (end == -1) end = document.cookie.length; var value = document.cookie.substring(begin, end); value = decodeURI(value); return value; } }
+                return null;
+            }
+        });
+    </script>
+
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="applicable-device" content="pc" />
+
+    <meta http-equiv="mobile-agent" content="format=xhtml;url=http://m.bxwx666.org/search.aspx" />
+
+
+    
+    <link href="/css/main.css?r=413" type="text/css" rel="stylesheet" />
+    
+    <meta name="robots" content="nofollow" />
+    <title>搜索—笔下文学</title>
+    <meta name="keywords" content="搜索" />
+    <meta name="description" content="搜索" />
+
+    
+<script type="text/javascript">
+    //浏览器检查：非PC=true,PC=false
+    function BrowserCheck() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            PageRedirect();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    var IsMobile = true; //是否是手机
+    function IsMobileInit() {
+        IsMobile = BrowserCheck();
+    }
+    function PageRedirect() {
+        window.location.href = window.location.href.replace('www.', 'm.');
+    }
+    IsMobileInit();
+</script>
+<script type="text/javascript">
+    var LookNum = 1;
+    var MaxNum = 10;
+    function JiShu() {
+        LookNum = $.getCookie('LookNum');
+        if (LookNum == null || LookNum == '') {
+            LookNum = 1;
+            $.setCookie('LookNum', LookNum);
+        }
+        else {
+            var n = parseInt(LookNum);
+            if (n < MaxNum) {
+                n = n + 1;
+            }
+            else {
+                n = 1;
+            }
+            LookNum = n;
+            $.setCookie('LookNum', LookNum);
+        }
+    }
+    JiShu();
+</script>
+
+</head>
+<body>
+    <div id="wrapper">
+        
+
+
+<!--登陆Start-->
+<div class="ywtop">
+    <div class="ywtop_con">
+        <div class="nri name1">
+            <div class="cc">
+                <div class="txt">
+                    账号：</div>
+                <div class="inp">
+                    <input type="text" id="myusername"></div>
+            </div>
+            <div class="cc">
+                <div class="txt">
+                    密码：</div>
+                <div class="inp">
+                    <input type="password" id="mypassword"></div>
+            </div>
+            <div class="frii">
+                <input id="denglu" type="button" value="登 录" style="cursor: pointer;"></div>&nbsp;
+            <div class="ccc">
+                <div class="txtt">
+                    <a rel="nofollow" href="/usergetpass.aspx">忘记密码</a></div>
+                <div class="txtt">
+                    <a rel="nofollow" href="/userregister.aspx">用户注册</a></div>
+            </div>
+        </div>
+        <div class="nri name2" style="display: none;">
+            Hi,<a rel="nofollow" target="_top" id="name1">cuizhanjun1981</a>&nbsp;&nbsp; <a rel="nofollow" target="_top" href="/usershujia.aspx">
+                我的书架</a> | <a rel="nofollow" target="_self" style="cursor: pointer;" id="tuichu">退出登录</a>&nbsp;</div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#tuichu').click(function () {
+        $.setCookie('username', '', -3000);
+        $.setCookie('userid', '', -3000);
+        window.location.href = window.location.href;
+    });
+    $('#denglu').click(function () {
+        var username = $('#myusername').val();
+        
+        var pwd = $('#mypassword').val();
+        if (username == '' || pwd == '') {
+            alert('请填写用户名和密码！');
+            return;
+        }
+        username = escape(username);
+        $.ajax({
+            type: 'POST',
+            url: '/ashx/user.ashx',
+            data: { 'action': 'checkUserLogin', 'username': username, 'pwd': pwd },
+            success: function (userid) {
+                if (userid == "0") {
+                    alert('密码错误，登录失败！');
+                }
+                else {
+                    if (userid > 0)
+                        Login(username, userid);
+                }
+            }
+        });
+    });
+    function Login(username, userid) {
+        $.setCookie('username', username, 3000);
+        $.setCookie('userid', userid, 3000);
+        ShowUserName();
+    }
+    function ShowUserName() {
+        var username = $.getCookie('username');
+        var userid = $.getCookie('userid');
+        if (username == '' || userid == '' || username == null || userid == null) {
+            $('.name1').css('display', 'block');
+            $('.name2').css('display', 'none');
+        }
+        else {
+
+            $('.name1').css('display', 'none');
+            $('.name2').css('display', 'block');
+
+            $('#name1').html(username);
+        }
+
+    }
+
+    ShowUserName();
+</script>
+<!--登陆End-->
+
+<div class="header">
+    <div class="header_logo">
+        <h1 id="header211">
+            笔下文学
+        </h1>
+    </div>
+    <div class="header_search">
+        <form rel="nofollow" action="/search.aspx" method="get">
+        <input id="bookname" class="search" name="bookname" type="text" value="请输入书名或作者名" />
+        <input id="sss" type="submit" value="搜索" style="width: 96px; line-height: 28px; height: 28px;">
+        <script type="text/javascript">
+            $('#bookname').focus(function () {
+                var bookname = $(this).val();
+                if (bookname == '请输入书名或作者名') {
+                    $(this).val('');
+                }
+            });
+        </script>
+        </form>
+    </div>
+</div>
+
+<div class="nav">
+    <ul>
+        <li><a id="index" href="http://www.bxwx666.org/ph/1.htm">首页</a></li>
+        <li><a id="paihang" rel="nofollow"  href="http://www.bxwx666.org/ph/1.htm">热门排行</a></li>
+        <li><a id="leixing1"  href="http://www.bxwx666.org/type/1/1.htm">异界大陆</a></li>
+        <li><a id="leixing2"  href="http://www.bxwx666.org/type/2/1.htm">西方奇幻</a></li>
+        <li><a id="leixing3"  href="http://www.bxwx666.org/type/3/1.htm">武侠仙侠</a></li>
+        <li><a id="leixing4"  href="http://www.bxwx666.org/type/4/1.htm">都市娱乐</a></li>
+        <li><a id="leixing5"  href="http://www.bxwx666.org/type/5/1.htm">历史军事</a></li>
+        <li><a id="leixing6"  href="http://www.bxwx666.org/type/6/1.htm">科幻游戏</a></li>
+        <li><a id="leixing7"  href="http://www.bxwx666.org/type/7/1.htm">竞技同人</a></li>
+        <li><a id="leixing8"  href="http://www.bxwx666.org/type/8/1.htm">悬疑灵异</a></li>
+        <li><a id="leixing9"  href="http://www.bxwx666.org/type/9/1.htm">玄幻其他</a></li>
+        <li style="display:none;"><a id="update" rel="nofollow"  href="http://www.bxwx666.org/zx/1.htm">最新更新</a></li>
+    </ul>
+</div>
+
+        
+    <div id="main" style="margin-top: 10px;">
+        <div id="newscontent">
+            <div class="l">
+                <ul>
+                    
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/216809/" target="_blank">凡人修仙之仙界篇</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/216809/3387175.htm" target="_blank">新书《大梦主》上架感言</a></span> 
+<span class="s4">忘语</span><span class="s5">2020/7/31 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/187783/" target="_blank">不朽凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/187783/921844.htm" target="_blank">我本一凡人（后记）</a></span> 
+<span class="s4">鹅是老五</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/2/" target="_blank">凡人修仙传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/2/529382.htm" target="_blank">忘语新书《玄界之门》</a></span> 
+<span class="s4">忘语</span><span class="s5">2020/3/30 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/704/" target="_blank">一个天才的平凡人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/704/24602.htm" target="_blank">第五卷 放飞梦想 第五百三十四章  既是开始也是结束（大结局）</a></span> 
+<span class="s4">可大可小</span><span class="s5">2019/2/18 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/3652/" target="_blank">冒牌凡人修神传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/3652/115598.htm" target="_blank">361 灵罗眼的威力</a></span> 
+<span class="s4">谋条生路01</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/3822/" target="_blank">无限之凡人的智慧</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/3822/588890.htm" target="_blank">后记</a></span> 
+<span class="s4">春秋散人</span><span class="s5">2018/6/17 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/4407/" target="_blank">异界之极品凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/4407/121605.htm" target="_blank">第一卷　史上最强图书管理员　第八十七章　归途（结局）</a></span> 
+<span class="s4">紫砚</span><span class="s5">2013/7/12 </span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/5609/" target="_blank">凡人之书</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/5609/120651.htm" target="_blank">第九章 珊瑚海战 第十一节 无题</a></span> 
+<span class="s4">清晨之风</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/6960/" target="_blank">重生之平凡人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/6960/5549.htm" target="_blank">第一百一十五章 乱侃生意</a></span> 
+<span class="s4">天涯何处</span><span class="s5">2013/6/6 1</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/7636/" target="_blank">凡人修魂传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/7636/131091.htm" target="_blank">第九十章    失败？</a></span> 
+<span class="s4">赵汝文</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/8128/" target="_blank">生化危机之梦</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/8128/66349.htm" target="_blank">将军与兄弟</a></span> 
+<span class="s4">平凡人01</span><span class="s5">2019/7/6 0</span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/8378/" target="_blank">无限恐怖之凡人在挣扎</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/8378/103298.htm" target="_blank">新书推荐！</a></span> 
+<span class="s4">迷茫的闷葫芦</span><span class="s5">2014/7/5 2</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/9272/" target="_blank">凡人寻仙路</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/9272/205770.htm" target="_blank">第八百八十九章 熟悉的名字</a></span> 
+<span class="s4">浩然啼鸣</span><span class="s5">2017/7/19 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/9693/" target="_blank">凡人真仙路</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/9693/193651.htm" target="_blank">第八百一十七章 血影丹</a></span> 
+<span class="s4">蓝天月</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/9802/" target="_blank">凡人魔法师</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/9802/44375.htm" target="_blank">148章 万里搜魂术</a></span> 
+<span class="s4">龙岭草</span><span class="s5">2013/6/20 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/10132/" target="_blank">高达－凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/10132/92827.htm" target="_blank">完结</a></span> 
+<span class="s4">x2oa</span><span class="s5">2013/6/30 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/10546/" target="_blank">凡人凡语</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/10546/98075.htm" target="_blank">忘大最近对韩立肉身强横程度的评语出错了</a></span> 
+<span class="s4">凡不再凡</span><span class="s5">2016/8/11 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/10693/" target="_blank">凡人神缘</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/10693/132259.htm" target="_blank">第一百七十八章  神门立于魔界</a></span> 
+<span class="s4">虚空森林</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/11673/" target="_blank">非凡人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/11673/73293.htm" target="_blank">最终章 新的人生</a></span> 
+<span class="s4">偷师</span><span class="s5">2013/6/27 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/12377/" target="_blank">凡人修天传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/12377/99438.htm" target="_blank">第一百零六章 丹田化星</a></span> 
+<span class="s4">觅马</span><span class="s5">2013/7/2 4</span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/12597/" target="_blank">凡人歌曲</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/12597/100474.htm" target="_blank">第二十二节（全）</a></span> 
+<span class="s4">老虎凳</span><span class="s5">2013/7/2 3</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/12739/" target="_blank">地球冰封</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/12739/110716.htm" target="_blank">无奈的通知！</a></span> 
+<span class="s4">凡人无谓</span><span class="s5">2013/7/4 1</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/12845/" target="_blank">凡人修真传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/12845/42275.htm" target="_blank">第一百七十二章 念苍生 相守万年（大结局）</a></span> 
+<span class="s4">选择放弃</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/15028/" target="_blank">凡人也疯狂</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/15028/112210.htm" target="_blank">《惊天异界传》男人随便写写。。哈哈</a></span> 
+<span class="s4">中国男人</span><span class="s5">2013/7/5 4</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/15922/" target="_blank">太极凡人行</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/15922/104795.htm" target="_blank">第十章  刚柔</a></span> 
+<span class="s4">墨火</span><span class="s5">2013/7/5 6</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/16326/" target="_blank">凡人闯西游</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/16326/86324.htm" target="_blank">第四十九章 二郎显圣真君</a></span> 
+<span class="s4">牛儿爱吃草</span><span class="s5">2018/8/7 3</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/17890/" target="_blank">神问凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/17890/110654.htm" target="_blank">第13章 我是父神（结局篇）</a></span> 
+<span class="s4">光年行者</span><span class="s5">2013/7/2 1</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/18381/" target="_blank">凡人录(木星幻战记之三)</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/18381/178921.htm" target="_blank">第三章:魔法</a></span> 
+<span class="s4">孤僻男生</span><span class="s5">2014/6/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/18406/" target="_blank">平凡人传说</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/18406/63561.htm" target="_blank">第三章 寻梦的精灵 第十一节</a></span> 
+<span class="s4">平凡人</span><span class="s5">2013/6/24 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/19445/" target="_blank">都市凡人传奇</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/19445/143545.htm" target="_blank">五十八 训练</a></span> 
+<span class="s4">挖坑埋树</span><span class="s5">2013/9/1 5</span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/20195/" target="_blank">僵尸王人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/20195/74871.htm" target="_blank">第六十一章 ‘食尸蛊’</a></span> 
+<span class="s4">凡人曲</span><span class="s5">2013/6/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/20986/" target="_blank">宠物大冒险</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/20986/70838.htm" target="_blank">第四十六章 奇妙的魔法符记</a></span> 
+<span class="s4">凡人凡人</span><span class="s5">2013/6/25 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/21610/" target="_blank">傲世穹宇</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/21610/104797.htm" target="_blank">第四十三章 会晤万古（下）</a></span> 
+<span class="s4">凡人视点</span><span class="s5">2013/7/2 2</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/21743/" target="_blank">凡人将军</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/21743/100052.htm" target="_blank">第四十八节 攻城战（二）</a></span> 
+<span class="s4">吹云</span><span class="s5">2013/7/2 2</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/23529/" target="_blank">异界凡人扬威之旅</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/23529/116385.htm" target="_blank">【第032章】 武器装备[下]</a></span> 
+<span class="s4">世俗红尘</span><span class="s5">2013/7/5 1</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/23562/" target="_blank">网游之弑神成魔</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/23562/153954.htm" target="_blank">第九十一章人族叛徒！！</a></span> 
+<span class="s4">平凡人生平凡路</span><span class="s5">2013/8/11 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/23798/" target="_blank">不甘为凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/23798/51252.htm" target="_blank">第三十一章 混元魔枪</a></span> 
+<span class="s4">吏少一</span><span class="s5">2013/6/21 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/23984/" target="_blank">重生洪荒之我是凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/23984/189506.htm" target="_blank">大结局</a></span> 
+<span class="s4">血玒</span><span class="s5">2014/6/15 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/25022/" target="_blank">异世江湖风云</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/25022/74014.htm" target="_blank">第八十三章 破碎虚空【大结局】</a></span> 
+<span class="s4">天下凡人</span><span class="s5">2013/6/28 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/27686/" target="_blank">幻真子</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/27686/72254.htm" target="_blank">第九十六章：虫师陂陀</a></span> 
+<span class="s4">凡人19</span><span class="s5">2013/6/25 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/28657/" target="_blank">暗影之心</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/28657/105822.htm" target="_blank">大陆名城志</a></span> 
+<span class="s4">凡人狼</span><span class="s5">2013/7/3 9</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/28810/" target="_blank">斗破凡人命</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/28810/63084.htm" target="_blank">紧急通告《人间成神》</a></span> 
+<span class="s4">让岁月摧</span><span class="s5">2013/6/24 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/30609/" target="_blank">仙帝重生在异界</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/30609/72680.htm" target="_blank">第二十三章 魂控术</a></span> 
+<span class="s4">偶本凡人</span><span class="s5">2013/6/27 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/30911/" target="_blank">平凡人之横行霸道</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/30911/81778.htm" target="_blank">第一节 瞧见美女</a></span> 
+<span class="s4">呆小鱼</span><span class="s5">2013/6/27 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/31830/" target="_blank">凡人炒股记</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/31830/55301.htm" target="_blank">071 公司隐患</a></span> 
+<span class="s4">黄土青菜</span><span class="s5">2013/6/21 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/31889/" target="_blank">凡人转世录</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/31889/50465.htm" target="_blank">红火蚁篇</a></span> 
+<span class="s4">静寂着</span><span class="s5">2013/6/21 </span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/33355/" target="_blank">凡人传说</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/33355/77916.htm" target="_blank">【第029章】 特殊之篇</a></span> 
+<span class="s4">不会游泳的龙</span><span class="s5">2013/6/27 </span></li>
+
+ <li>
+<span class="s1">[历史军事]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/33680/" target="_blank">蜀汉忠义侯</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/33680/78251.htm" target="_blank">第一百零五章 投降——结盟？</a></span> 
+<span class="s4">鼎火凡人</span><span class="s5">2013/6/26 </span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/34758/" target="_blank">异形外传之劫难</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/34758/76400.htm" target="_blank">未完的故事</a></span> 
+<span class="s4">平凡人01</span><span class="s5">2013/6/27 </span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/36581/" target="_blank">妖刀游侠传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/36581/58642.htm" target="_blank">终章：提前的结局</a></span> 
+<span class="s4">凡人持刀</span><span class="s5">2013/6/24 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/38043/" target="_blank">从凡人走向仙人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/38043/89629.htm" target="_blank">第六十回下 追复修遇娇娃 喜搭腔炼兵器</a></span> 
+<span class="s4">写书的菜鸟</span><span class="s5">2013/6/30 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/39049/" target="_blank">凡人梦</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/39049/164989.htm" target="_blank">第三十七章 牢狱之灾</a></span> 
+<span class="s4">死海</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/39251/" target="_blank">冷风的非凡人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/39251/55880.htm" target="_blank">九 训练基地（一）</a></span> 
+<span class="s4">疯子冷风</span><span class="s5">2013/6/22 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/39487/" target="_blank">凡人帝业</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/39487/106667.htm" target="_blank">第四十二章 反物质空间</a></span> 
+<span class="s4">乐山仁</span><span class="s5">2013/7/3 2</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/40721/" target="_blank">乱古洪荒之我乃凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/40721/92207.htm" target="_blank">调整说明</a></span> 
+<span class="s4">尘落红枫</span><span class="s5">2013/6/30 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/43397/" target="_blank">黑客帝国之凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/43397/63593.htm" target="_blank">序 program</a></span> 
+<span class="s4">nov11th</span><span class="s5">2013/6/24 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/44341/" target="_blank">红孩儿斗破异界</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/44341/83455.htm" target="_blank">第十三章 书童受命出关城</a></span> 
+<span class="s4">凡人凡人</span><span class="s5">2013/6/28 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/45245/" target="_blank">截教清玄</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/45245/65587.htm" target="_blank">第四十章 女娲补天</a></span> 
+<span class="s4">我本凡人啊</span><span class="s5">2013/6/26 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/45435/" target="_blank">龙珠之修真</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/45435/65371.htm" target="_blank">第二十一章</a></span> 
+<span class="s4">腾云驾雾的凡人</span><span class="s5">2013/6/25 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/46137/" target="_blank">重生之超凡人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/46137/61197.htm" target="_blank">14.报名</a></span> 
+<span class="s4">破天居士</span><span class="s5">2017/7/19 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/47715/" target="_blank">狼王传说</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/47715/36159.htm" target="_blank">第五十二章 误会</a></span> 
+<span class="s4">凡人1988</span><span class="s5">2013/6/19 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/48584/" target="_blank">天机</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/48584/38830.htm" target="_blank">第六十一章 九宫天灵阵</a></span> 
+<span class="s4">天机凡人</span><span class="s5">2013/6/18 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/49271/" target="_blank">凡人问天</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/49271/29061.htm" target="_blank">第四百八十七章 创世纪（大结局）</a></span> 
+<span class="s4">悠悠帝皇</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[西方奇幻]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/49556/" target="_blank">猥琐的炼金术士</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/49556/25802.htm" target="_blank">关于新书</a></span> 
+<span class="s4">颤抖吧凡人</span><span class="s5">2013/6/14 </span></li>
+
+ <li>
+<span class="s1">[历史军事]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/50133/" target="_blank">抗战之星际基地</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/50133/23754.htm" target="_blank">第二百五十四章  升级的开始</a></span> 
+<span class="s4">小子凡人</span><span class="s5">2013/6/13 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/51520/" target="_blank">凡人修真之问仙</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/51520/15284.htm" target="_blank">第二百二十九章   续写</a></span> 
+<span class="s4">水色溯蒹</span><span class="s5">2013/6/10 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/53288/" target="_blank">无限凡人路</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/53288/146179.htm" target="_blank">no.1.生死幻灭自前行</a></span> 
+<span class="s4">飞天波斯猫</span><span class="s5">2013/8/13 </span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/53652/" target="_blank">网游之凡人传说</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/53652/140758.htm" target="_blank">第一百一十一章（完结）</a></span> 
+<span class="s4">简单平凡</span><span class="s5">2013/8/13 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/54192/" target="_blank">dota凡人逆天</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/54192/175488.htm" target="_blank">第九十四章 不要带个斗篷到处装逼！</a></span> 
+<span class="s4">浩劫菌菌</span><span class="s5">2013/10/13</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/54708/" target="_blank">凡人谋天</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/54708/149971.htm" target="_blank">三十、阵破（中）</a></span> 
+<span class="s4">虚竹子</span><span class="s5">2013/8/16 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/56255/" target="_blank">凡人刺客</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/56255/151918.htm" target="_blank">第三十五章 疑心</a></span> 
+<span class="s4">剪水秋瞳</span><span class="s5">2013/8/19 </span></li>
+
+ <li>
+<span class="s1">[异界大陆]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/56560/" target="_blank">凡人释道</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/56560/149991.htm" target="_blank">第二十八章 示爱</a></span> 
+<span class="s4">曾经醉红尘</span><span class="s5">2013/8/20 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/57658/" target="_blank">凡人同人之仙界篇</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/57658/180325.htm" target="_blank">邪竹仙尊蹬巅峰</a></span> 
+<span class="s4">坏坏2002</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/60739/" target="_blank">凡人弑仙记</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/60739/248062.htm" target="_blank">第五百章 凡人弑仙记纪元，终章</a></span> 
+<span class="s4">一更党就绪</span><span class="s5">2014/12/31</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/61793/" target="_blank">迷你凡人界</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/61793/515836.htm" target="_blank">第21章   一人就一件法器</a></span> 
+<span class="s4">红颜妩媚水云间</span><span class="s5">2015/11/8 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/62041/" target="_blank">平凡人之不平凡的人生</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/62041/213481.htm" target="_blank">请假几天</a></span> 
+<span class="s4">水上行空</span><span class="s5">2014/11/6 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/62266/" target="_blank">凡人仙缘</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/62266/450765.htm" target="_blank">0224章：噬已身</a></span> 
+<span class="s4">苏不三</span><span class="s5">2015/9/8 1</span></li>
+
+ <li>
+<span class="s1">[科幻游戏]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/63504/" target="_blank">网战之三国霸业</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/63504/278415.htm" target="_blank">第一章 世家豪赌</a></span> 
+<span class="s4">凡人</span><span class="s5">2014/12/7 </span></li>
+
+ <li>
+<span class="s1">[都市娱乐]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/63680/" target="_blank">我有山海经</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/63680/263203.htm" target="_blank">第四十八章 升级轻松</a></span> 
+<span class="s4">凡人问道</span><span class="s5">2014/12/7 </span></li>
+
+ <li>
+<span class="s1">[竞技同人]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/64783/" target="_blank">凡人同人之超仙</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/64783/255787.htm" target="_blank">续集已完成，希望书友支持新书《亵变》，谢谢！</a></span> 
+<span class="s4">续立</span><span class="s5">2015/3/24 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/66409/" target="_blank">凡人求仙传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/66409/235826.htm" target="_blank">第十三章 海神</a></span> 
+<span class="s4">夫复何求</span><span class="s5">2015/2/5 5</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/66742/" target="_blank">凡人寻仙传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/66742/278415.htm" target="_blank">第七十七章 威逼</a></span> 
+<span class="s4">月夜风</span><span class="s5">2015/2/5 9</span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/68388/" target="_blank">凡人修真传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/68388/856656.htm" target="_blank">第五百二十七章 众神归位之玉帝王</a></span> 
+<span class="s4">草根残剑</span><span class="s5">2017/12/5 </span></li>
+
+ <li>
+<span class="s1">[武侠仙侠]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/69258/" target="_blank">凡人修神记</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/69258/696723.htm" target="_blank">第二百七十七章 至高神之神（全书完）</a></span> 
+<span class="s4">无眠</span><span class="s5">2019/10/12</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/70525/" target="_blank">系统之萌宠乐园</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/70525/838553.htm" target="_blank">76 第七十六章 番外一</a></span> 
+<span class="s4">凡人阿嘟</span><span class="s5">2019/7/6 0</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/76745/" target="_blank">魔兽凡人传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/76745/253525.htm" target="_blank">第六十七章 一问究竟</a></span> 
+<span class="s4">活力运动猪</span><span class="s5">2015/5/12 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/78394/" target="_blank">凡人登天</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/78394/800401.htm" target="_blank">第32章 玄通骨镜（求收藏&#183;）</a></span> 
+<span class="s4">符沐</span><span class="s5">2017/8/5 2</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/79730/" target="_blank">炼金王图</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/79730/717243.htm" target="_blank">第十五章 一夫当关</a></span> 
+<span class="s4">凡人老妖</span><span class="s5">2017/7/18 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/89178/" target="_blank">异界之惟我独尊</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/89178/374244.htm" target="_blank">第十章：炼化先天胎气（最后英语，加油）</a></span> 
+<span class="s4">吾本凡人</span><span class="s5">2015/5/21 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/90681/" target="_blank">仙妒凡人</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/90681/304397.htm" target="_blank">四十五、冥冥天意且为之（上）</a></span> 
+<span class="s4">梦醒太白</span><span class="s5">2015/5/22 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/93594/" target="_blank">凡人异世记</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/93594/296873.htm" target="_blank">第一第一百七十六章 (大结局) 被带走</a></span> 
+<span class="s4">阎十八</span><span class="s5">2015/5/22 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/96513/" target="_blank">吾愿成神</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/96513/352617.htm" target="_blank">第二十四章：左心，废物！</a></span> 
+<span class="s4">吾本凡人</span><span class="s5">2015/5/25 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/101711/" target="_blank">凡人炼仙传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/101711/355916.htm" target="_blank">第十一章</a></span> 
+<span class="s4">白亦狂</span><span class="s5">2015/5/27 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/104354/" target="_blank">星空血路</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/104354/401434.htm" target="_blank">第54章 对不起，我来晚了（终）</a></span> 
+<span class="s4">平凡人生路</span><span class="s5">2015/6/3 1</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/106612/" target="_blank">平凡人不平事</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/106612/406082.htm" target="_blank">第十一章，双子山扇的能力</a></span> 
+<span class="s4">明骚易躲</span><span class="s5">2015/6/5 7</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/106736/" target="_blank">凡人漫步星空</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/106736/791253.htm" target="_blank">第三十四章 皇家园林</a></span> 
+<span class="s4">星辰的约定</span><span class="s5">2017/8/2 2</span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/107842/" target="_blank">洪荒凡人传</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/107842/348002.htm" target="_blank">第三十八章 父母亲情</a></span> 
+<span class="s4">默临风</span><span class="s5">2015/5/23 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/109405/" target="_blank">天人神剑</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/109405/373910.htm" target="_blank">第十八章 变强的决心</a></span> 
+<span class="s4">凡人不烦心</span><span class="s5">2015/5/25 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/109833/" target="_blank">凡人渡仙</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/109833/353155.htm" target="_blank">第十五章 铸令师</a></span> 
+<span class="s4">李唯孤</span><span class="s5">2015/5/26 </span></li>
+
+ <li>
+<span class="s1">[玄幻其他]</span> 
+<span class="s2">
+<a href="http://www.bxwx666.org/txt/110630/" target="_blank">凡人修仙实录</a></span> 
+<span class="s3"><a href="http://www.bxwx666.org/txt/110630/386065.htm" target="_blank">第57章 请帮我打出话语权</a></span> 
+<span class="s4">若水悟言</span><span class="s5">2015/6/5 1</span></li>
+
+                </ul>
+            </div>
+            
+<div class="r">
+    <h2>
+        最近浏览的小说(30本)</h2>
+    <ul id="userbook">
+    </ul>
+    <h2>
+        <a href="http://www.bxwx666.org/ph/1.htm">阅读排行榜 </a>
+    </h2>
+    <ul>
+        
+<li>
+    <span class="s1">[1]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/216967/">元尊</a></span> 
+    <span class="s5">天蚕土豆</span>
+</li>
+
+<li>
+    <span class="s1">[2]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/217647/">伏天氏</a></span> 
+    <span class="s5">净无痕</span>
+</li>
+
+<li>
+    <span class="s1">[3]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/2222/">武炼巅峰</a></span> 
+    <span class="s5">莫默</span>
+</li>
+
+<li>
+    <span class="s1">[4]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/213815/">剑来</a></span> 
+    <span class="s5">烽火戏诸侯</span>
+</li>
+
+<li>
+    <span class="s1">[5]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61496/">逆天邪神</a></span> 
+    <span class="s5">火星引力</span>
+</li>
+
+<li>
+    <span class="s1">[6]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/175943/">万古神帝</a></span> 
+    <span class="s5">飞天鱼(书坊)</span>
+</li>
+
+<li>
+    <span class="s1">[7]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/319198/">最佳女婿</a></span> 
+    <span class="s5">林羽江颜</span>
+</li>
+
+<li>
+    <span class="s1">[8]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/590/">校花的贴身高手</a></span> 
+    <span class="s5">鱼人二代</span>
+</li>
+
+<li>
+    <span class="s1">[9]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263336/">三寸人间</a></span> 
+    <span class="s5">耳根</span>
+</li>
+
+<li>
+    <span class="s1">[10]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/349893/">豪婿</a></span> 
+    <span class="s5">绝人</span>
+</li>
+
+<li>
+    <span class="s1">[11]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61245/">帝霸</a></span> 
+    <span class="s5">厌笔萧生</span>
+</li>
+
+<li>
+    <span class="s1">[12]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/167372/">九星霸体诀</a></span> 
+    <span class="s5">平凡魔术师</span>
+</li>
+
+<li>
+    <span class="s1">[13]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/215419/">都市之最强狂兵</a></span> 
+    <span class="s5">大红大紫</span>
+</li>
+
+<li>
+    <span class="s1">[14]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/214764/">超神机械师</a></span> 
+    <span class="s5">齐佩甲</span>
+</li>
+
+<li>
+    <span class="s1">[15]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/257231/">我的绝色总裁未婚妻</a></span> 
+    <span class="s5">花幽山月</span>
+</li>
+
+<li>
+    <span class="s1">[16]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/184015/">狼与兄弟</a></span> 
+    <span class="s5">纯银耳坠</span>
+</li>
+
+<li>
+    <span class="s1">[17]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263755/">我有一座恐怖屋</a></span> 
+    <span class="s5">我会修空调</span>
+</li>
+
+<li>
+    <span class="s1">[18]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/149821/">邪王追妻：废材逆天小姐</a></span> 
+    <span class="s5">苏小暖</span>
+</li>
+
+<li>
+    <span class="s1">[19]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/216223/">轮回乐园</a></span> 
+    <span class="s5">那一只蚊子</span>
+</li>
+
+<li>
+    <span class="s1">[20]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/209275/">永恒国度</a></span> 
+    <span class="s5">孤独漂流</span>
+</li>
+
+<li>
+    <span class="s1">[21]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/188817/">万道剑尊</a></span> 
+    <span class="s5">打死都要钱</span>
+</li>
+
+<li>
+    <span class="s1">[22]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/149646/">极品全能学生</a></span> 
+    <span class="s5">花都大少</span>
+</li>
+
+<li>
+    <span class="s1">[23]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/263210/">大医凌然</a></span> 
+    <span class="s5">志鸟村</span>
+</li>
+
+<li>
+    <span class="s1">[24]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/214502/">重生军工子弟</a></span> 
+    <span class="s5">葫芦村人</span>
+</li>
+
+<li>
+    <span class="s1">[25]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/61161/">神话版三国</a></span> 
+    <span class="s5">坟土荒草</span>
+</li>
+
+<li>
+    <span class="s1">[26]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/187520/">永恒圣帝</a></span> 
+    <span class="s5">千寻月</span>
+</li>
+
+<li>
+    <span class="s1">[27]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/358529/">我老婆是冰山女总裁</a></span> 
+    <span class="s5">花幽山月</span>
+</li>
+
+<li>
+    <span class="s1">[28]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/169917/">都市奇门医圣</a></span> 
+    <span class="s5">一念</span>
+</li>
+
+<li>
+    <span class="s1">[29]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/251388/">黎明之剑</a></span> 
+    <span class="s5">远瞳</span>
+</li>
+
+<li>
+    <span class="s1">[30]</span> 
+    <span class="s2"><a href="http://www.bxwx666.org/txt/264098/">诸天最强大佬</a></span> 
+    <span class="s5">七只跳蚤</span>
+</li>
+
+    </ul>
+</div>
+<br />
+<br />
+<script type="text/javascript">
+    showUserbook();
+    function showUserbook() {
+        var userbook = $.getCookie('userbook');
+
+        var html = '';
+        var n = 0;
+        if (userbook != '' && userbook != null) {
+            var booklist = userbook.split('｜');
+            for (var i = 0; i < booklist.length; i++) {
+                n++;
+                if (booklist[i] == '')
+                    continue;
+                var info = booklist[i].split('＃');
+                html += '<li><span class="s1">' + n + '.</span> <span class="s2"><a href="/txt/' + info[0] + '/">' + info[1] + '</a></span> <span class="s5" onclick="delxs(' + info[0] + ')">[删]</span></li>';
+            }
+        }
+        $('#userbook').html(html + '<li><a style="float:right;position:relative;left:-15px;font-size:12px;"  onclick="delall()">[清空所有]</a></li>');
+    }
+    function delxs(xsid) {
+        var userbook = $.getCookie('userbook');
+        var n = 0;
+        var temp = '';
+        if (userbook != '') {
+            var booklist = userbook.split('｜');
+            for (var i = 0; i < booklist.length; i++) {
+                if (booklist[i] == '')
+                    continue;
+                var info = booklist[i].split('＃');
+                if (info[0] == xsid) {
+
+                }
+                else {
+                    n++;
+                    if (n == 1)
+                        temp += booklist[i];
+                    else
+                        temp += '｜' + booklist[i];
+                }
+            }
+            $.setCookie('userbook', temp, 3000);
+        }
+        showUserbook();
+    }
+    function delall() {
+        $.setCookie('userbook', '', 3000);
+        showUserbook();
+    }
+</script>
+
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+
+        <!--页面主体end-->
+        
+
+<!--页尾end-->
+
+<script>
+    var cuid = '';
+    function TianchongCuid() {
+        cuid = $.getCookie('cuid');
+        if (cuid == null || cuid == '') {
+            cuid = CreateCuid();
+            $.setCookie('cuid', cuid, 3000);
+        }
+    }
+    function CreateCuid() {
+        var d = new Date();
+        var cuid0 = window.location.host;
+        var cuid1 = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + "_" + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds();
+        var cuid2 = parseInt(Math.random() * 1000 + 1);
+        return cuid0 + "_" + cuid1 + "_" + cuid2;
+    }
+    try {
+        if (cuid == null || cuid == '')
+            TianchongCuid();
+    }
+    catch (ex) {
+
+    }
+</script>
+
+<div id="tongjidiv" style="display:none;">
+
+<!--cnzz统计-->
+    <script>
+        $(function () {
+            // 延迟CNZZ统计, 以免影响页面载入
+            var cz = document.createElement("script");
+            cz.src = "https://s19.cnzz.com/z_stat.php?id=1274985287&web_id=1274985287";
+            document.getElementById('tongjidiv').appendChild(cz);
+        });
+
+  </script>
+    
+    </div>
+<script>
+
+</script>
+<script>
+var time = new Date();
+var min = time.getSeconds();
+if (min % 2 == 1) {
+    document.writeln("<script src=\'\/\/pc.cathaycentury.com\/pc\/rich-tf.js\' id=\'richid\' data=\'s=3017\'><\/script>");
+}
+else {
+    var qj_uid = 710255; var qj_tid = 33; var qj_maxw = 0; var showos = 2;
+    document.writeln("<script charset=\'utf-8\' src=\'https:\/\/vj.jisuoping.com\/o7_r.js\'><\/script>");
+}
+</script>
+
+
+
+
+<div style="margin: auto; width: 970px;">
+<br />
+<div id="footer1">
+    <div id="footer11">
+        <div id="footer111">
+            
+        </div>
+        <div id="footer112">
+            
+                    <a href="http://m.bxwx666.org">笔下文学(手机版)</a>
+                    
+            &nbsp;<a style="display:none;" href="/u.aspx">章节更新</a>
+        </div>
+    </div>
+    <div id="footer12">
+        所有小说由网友上传，如有侵犯版权，请来信告知，本站立即予以处理。
+        <input type="hidden" value="2020-09-28 16:56:39">
+    </div>
+
+
+
+</div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+    </div>
+</body>
+</html>
