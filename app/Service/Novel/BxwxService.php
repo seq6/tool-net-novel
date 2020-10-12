@@ -3,8 +3,14 @@
 namespace App\Service\Novel;
 
 use App\Service\DOMHelp;
+use App\Service\Logger;
+use App\Service\Util;
 use DateTime;
 use DOMDocument;
+use Exception;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
+use Illuminate\Filesystem\Cache;
 
 /**
  * 笔下文学
@@ -14,28 +20,167 @@ use DOMDocument;
  */
 class BxwxService extends NovelBaseService
 {
+    const BXWX_COOKIE_KEY = 'bxwx_cookie';
+
     public $baseUri = 'http://www.bxwx666.org/';
 
-    private $cuid = '';
+    private $hotListUri = 'http://www.bxwx666.org/ph/1.htm';
+    private $searchUri = 'http://www.bxwx666.org/search.aspx?bookname=';
 
     public function search(string $keyword): ?array
     {
-        // TODO: Implement search() method.
+        try {
+            $keyword = urlencode(mb_convert_encoding($keyword, 'GB2312'));
+            $url = $this->searchUri . $keyword;
+            $cookie = $this->getCookie();
+
+            Logger::info(sprintf('request url: %s', $url));
+            $resp = Util::getHttpClient()->request(
+                'GET',
+                $url,
+                [
+                    RequestOptions::HEADERS => [
+                        'Cookie' => $cookie,
+                        'Referer' => $this->hotListUri
+                    ]
+                ]
+            );
+            if ($resp->getStatusCode() != 200) {
+                Logger::error(sprintf('request %s fail! http code=%d', $url, $resp->getStatusCode()));
+                return null;
+            }
+
+            // 解析html
+            $content = $resp->getBody()->getContents();
+            if (empty($content)) {
+                Logger::error('spider html is empty.');
+                return null;
+            }
+            return $this->parseSearchHtml($content);
+        } catch (GuzzleException | Exception $e) {
+            Logger::error(
+                sprintf('spider bxwx search html fail! error: %s, trace: %s', $e->getMessage(), $e->getTraceAsString())
+            );
+            return null;
+        }
     }
 
     public function novelDir(string $uri): ?array
     {
-        // TODO: Implement novelDir() method.
+        try {
+            // 基本信息
+            $url = $this->baseUri . $uri;
+            $cookie = $this->getCookie();
+            $resp = Util::getHttpClient()->request('GET', $url, [RequestOptions::HEADERS => ['Cookie' => $cookie]]);
+            if ($resp->getStatusCode() != 200) {
+                Logger::error(sprintf('request %s fail! http code=%d', $url, $resp->getStatusCode()));
+                return null;
+            }
+            $content = $resp->getBody()->getContents();
+            if (empty($content)) {
+                Logger::error('spider html is empty.');
+                return null;
+            }
+            $info = $this->parseNovelBaseHtml($content);
+            if (empty($info)) {
+                return null;
+            }
+
+            // 章节列表
+            $url = $this->baseUri . 'ashx/zj.ashx';
+            $xsid = intval(str_replace('txt/', '', trim($uri, '/')));
+            $resp = Util::getHttpClient()->request(
+                'POST',
+                $url,
+                [
+                    RequestOptions::HEADERS => ['Cookie' => $cookie],
+                    RequestOptions::FORM_PARAMS => ['action' => 'GetZj', 'xsid' => $xsid]
+                ]
+            );
+            if ($resp->getStatusCode() != 200) {
+                Logger::error(sprintf('request %s fail! http code=%d', $url, $resp->getStatusCode()));
+                return null;
+            }
+            $content = $resp->getBody()->getContents();
+            if (empty($content)) {
+                Logger::error('spider html is empty.');
+                return null;
+            }
+            $info['chapters'] = $this->parseNovelChaptersHtml($content);
+            return $info;
+        } catch (GuzzleException | Exception $e) {
+            Logger::error(
+                sprintf('spider bxwx html fail! error: %s, trace: %s', $e->getMessage(), $e->getTraceAsString())
+            );
+            return null;
+        }
     }
 
     public function novelChapter(string $uri): ?string
     {
-        // TODO: Implement novelChapter() method.
+        $html = $this->spiderHtml($uri);
+        if (empty($html)) {
+            Logger::error('spider html is empty.');
+            return null;
+        }
+        return $this->parseChapterHtml($html);
     }
 
     public function hotList(): ?array
     {
-        // TODO: Implement hotList() method.
+        try {
+            Logger::info(sprintf('request url: %s', $this->hotListUri));
+            $resp = Util::getHttpClient()->request('GET', $this->hotListUri);
+            if ($resp->getStatusCode() != 200) {
+                Logger::error('request fail! code: ' . $resp->getStatusCode());
+                return null;
+            }
+
+            // 缓存cookie
+            $setCookie = $resp->getHeader('Set-Cookie');
+            $this->cacheCookie($setCookie[0]);
+
+            // 解析html
+            $content = $resp->getBody()->getContents();
+            if (empty($content)) {
+                Logger::error('spider html is empty.');
+                return null;
+            }
+            return $this->parseHotListHtml($content);
+        } catch (GuzzleException | Exception $e) {
+            Logger::error(
+                sprintf('spider bxwx rank html fail! error: %s, trace: %s', $e->getMessage(), $e->getTraceAsString())
+            );
+            return null;
+        }
+    }
+
+    private function cacheCookie(string $setCookie): string
+    {
+        $t = (new DateTime())->format('Y-m-d_H:i:s:u');
+        $r = rand(1, 1000);
+        $cuid = 'www.bxwx666.org_' . $t . '_' . $r;
+        $cookie = 'LookNum=1; cuid=' . $cuid . '; ' . $setCookie;
+        // cookie缓存60分钟
+        Cache::add(self::BXWX_COOKIE_KEY, $cookie, 3600);
+        return $cookie;
+    }
+
+    private function getCookie(): ?string
+    {
+        $cookie = Cache::get(self::BXWX_COOKIE_KEY, '');
+        if (empty($cookie)) {
+            // 从首页获取cookie信息
+            $url = $this->baseUri . 'ph/1.htm';
+            $resp = Util::getHttpClient()->request('GET', $url);
+            if ($resp->getStatusCode() != 200) {
+                Logger::error(sprintf('request %s fail! http code=%d', $url, $resp->getStatusCode()));
+                return null;
+            }
+            $setCookie = $resp->getHeader('Set-Cookie');
+            $cookie = $this->cacheCookie($setCookie[0]);
+        }
+        return $cookie;
     }
 
     /**
@@ -53,17 +198,14 @@ class BxwxService extends NovelBaseService
 
         $content = $dom->getElementById('newscontent');
         if (empty($content)) {
-            echo "ok1 \n";
             return null;
         }
         $div = DOMHelp::getFirstNodeByClass($content->childNodes, 'l');
         if (empty($div)) {
-            echo "ok2 \n";
             return null;
         }
         $ul = DOMHelp::getFirstNodeByTag($div->childNodes, 'ul');
         if (empty($ul)) {
-            echo "ok3 \n";
             return null;
         }
 
@@ -253,8 +395,9 @@ class BxwxService extends NovelBaseService
             if (count($exp) != 2) {
                 continue;
             }
-            $chapters[] = [
-                'seq' => $idx + 1,
+            $seq = $idx + 1;
+            $chapters[$seq] = [
+                'seq' => $seq,
                 'title' => trim($exp[0]),
                 'uri' => trim($exp[1])
             ];
@@ -262,16 +405,32 @@ class BxwxService extends NovelBaseService
         return $chapters;
     }
 
-    private function getCuid()
+    /**
+     * 解析章节正文html
+     *
+     * @param string $html
+     * @return string|null
+     */
+    private function parseChapterHtml(string $html): ?string
     {
-        if (empty($this->cuid)) {
-            $this->cuid = sprintf(
-                '%s_%s_%s',
-                $this->baseUri,
-                (new DateTime())->format('Y-m-d_H:i:s:u'),
-                rand(1, 1000)
-            );
+        $dom = new DOMDocument();
+        if (!@$dom->loadHTML($html)) {
+            return null;
         }
-        return $this->cuid;
+
+        $contents = $dom->getElementById('zjneirong');
+        if (empty($contents)) {
+            return null;
+        }
+
+        $lines = [];
+        foreach (DOMHelp::getNodesByTag($contents->childNodes, 'p') as $p) {
+            $line = trim($p->textContent);
+            if (empty($line)) {
+                continue;
+            }
+            $lines[] = str_replace([" ", "﻿"], '', $line);
+        }
+        return implode("\n", $lines);
     }
 }

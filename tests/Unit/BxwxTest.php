@@ -8,6 +8,7 @@ use App\Service\Util;
 use DateTime;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Storage;
+use ReflectionMethod;
 use Tests\TestCase;
 use Throwable;
 
@@ -24,6 +25,8 @@ class BxwxTest extends TestCase
      */
     public function testDownloadHtml()
     {
+        //new ReflectionMethod()
+
         try {
             $client = Util::getHttpClient();
 
@@ -180,16 +183,16 @@ class BxwxTest extends TestCase
     }
 
     /**
-     * 解析章节目录xml
+     * 解析章节目录html
      */
-    public function testParseNovelChaptersXml()
+    public function testParseNovelChaptersHtml()
     {
         try {
             $html = Storage::get('example/bxwx_novel2_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
             $info = (new BxwxService())->parseNovelChaptersHtml($html);
             Logger::info(
-                'testParseNovelChaptersXml success. result: ' . json_encode(
+                'testParseNovelChaptersHtml success. result: ' . json_encode(
                     $info,
                     JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE
                 )
@@ -198,10 +201,33 @@ class BxwxTest extends TestCase
         } catch (Throwable $e) {
             Logger::error(
                 sprintf(
-                    'testParseNovelChaptersXml fail! error: %s, trace: %s',
+                    'testParseNovelChaptersHtml fail! error: %s, trace: %s',
                     $e->getMessage(),
                     $e->getTraceAsString()
                 )
+            );
+            $this->assertTrue(false);
+        }
+    }
+
+    /**
+     * 解析章节正文html
+     */
+    public function testParseChapterHtml()
+    {
+        try {
+            $html = Storage::get('example/bxwx_chapter_example.html');
+            $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
+
+            $method = new ReflectionMethod('App\Service\Novel\BxwxService', 'parseChapterHtml');
+            $method->setAccessible(true);
+            $info = $method->invokeArgs(new BxwxService(), [$html]);
+
+            Logger::info('testParseChapterHtml success. result: ' . $info);
+            $this->assertTrue(true);
+        } catch (Throwable $e) {
+            Logger::error(
+                sprintf('testParseChapterHtml fail! error: %s, trace: %s', $e->getMessage(), $e->getTraceAsString())
             );
             $this->assertTrue(false);
         }

@@ -4,7 +4,6 @@ namespace App\Service\Novel;
 
 use App\Model\Chapter;
 use App\Service\Logger;
-use Generator;
 use Illuminate\Support\Facades\Storage;
 use ZipArchive;
 
