@@ -189,7 +189,7 @@ class BxwxService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseSearchHtml(string $html): ?array
+    private function parseSearchHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -257,7 +257,7 @@ class BxwxService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseHotListHtml(string $html): ?array
+    private function parseHotListHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -321,7 +321,7 @@ class BxwxService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseNovelBaseHtml(string $html): ?array
+    private function parseNovelBaseHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -385,7 +385,7 @@ class BxwxService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseNovelChaptersHtml(string $html): ?array
+    private function parseNovelChaptersHtml(string $html): ?array
     {
         $chapters = [];
         $html = str_replace(['<dd>', '</dd>', '<a href="http://www.bxwx666.org/'], '', $html);
