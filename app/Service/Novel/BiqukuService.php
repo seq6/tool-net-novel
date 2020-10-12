@@ -90,7 +90,7 @@ class BiqukuService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseHotListHtml(string $html): ?array
+    private function parseHotListHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -129,7 +129,7 @@ class BiqukuService extends NovelBaseService
      * @param string $html
      * @return array[]|null
      */
-    public function parseDirHtml(string $html): ?array
+    private function parseDirHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -217,7 +217,7 @@ class BiqukuService extends NovelBaseService
      * @param string $html
      * @return string|null
      */
-    public function parseChapterHtml(string $html): ?string
+    private function parseChapterHtml(string $html): ?string
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {
@@ -247,7 +247,7 @@ class BiqukuService extends NovelBaseService
      * @param string $html
      * @return array|null
      */
-    public function parseSearchHtml(string $html): ?array
+    private function parseSearchHtml(string $html): ?array
     {
         $dom = new DOMDocument();
         if (!@$dom->loadHTML($html)) {

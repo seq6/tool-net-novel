@@ -8,6 +8,7 @@ use App\Service\Util;
 use DateTime;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Storage;
+use ReflectionException;
 use ReflectionMethod;
 use Tests\TestCase;
 use Throwable;
@@ -119,11 +120,7 @@ class BxwxTest extends TestCase
         try {
             $html = Storage::get('example/bxwx_search_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
-
-            $method = new  ReflectionMethod('App\Service\Novel\BxwxService', 'parseSearchHtml');
-            $method->setAccessible(true);
-            $info = $method->invokeArgs(new BxwxService(), [$html]);
-
+            $info = $this->testPrivateMethod('parseSearchHtml', [$html]);
             Logger::info(
                 'testParseSearchHtml success. result: ' . json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
             );
@@ -144,11 +141,7 @@ class BxwxTest extends TestCase
         try {
             $html = Storage::get('example/bxwx_rank_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
-
-            $method = new  ReflectionMethod('App\Service\Novel\BxwxService', 'parseHotListHtml');
-            $method->setAccessible(true);
-            $info = $method->invokeArgs(new BxwxService(), [$html]);
-
+            $info = $this->testPrivateMethod('parseHotListHtml', [$html]);
             Logger::info(
                 'testParseHotListHtml success. result: ' . json_encode(
                     $info,
@@ -172,11 +165,7 @@ class BxwxTest extends TestCase
         try {
             $html = Storage::get('example/bxwx_novel1_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
-
-            $method = new  ReflectionMethod('App\Service\Novel\BxwxService', 'parseNovelBaseHtml');
-            $method->setAccessible(true);
-            $info = $method->invokeArgs(new BxwxService(), [$html]);
-
+            $info = $this->testPrivateMethod('parseNovelBaseHtml', [$html]);
             Logger::info(
                 'testParseNovelBaseHtml success. result: ' . json_encode(
                     $info,
@@ -200,11 +189,7 @@ class BxwxTest extends TestCase
         try {
             $html = Storage::get('example/bxwx_novel2_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
-
-            $method = new  ReflectionMethod('App\Service\Novel\BxwxService', 'parseNovelChaptersHtml');
-            $method->setAccessible(true);
-            $info = $method->invokeArgs(new BxwxService(), [$html]);
-
+            $info = $this->testPrivateMethod('parseNovelChaptersHtml', [$html]);
             Logger::info(
                 'testParseNovelChaptersHtml success. result: ' . json_encode(
                     $info,
@@ -232,11 +217,7 @@ class BxwxTest extends TestCase
         try {
             $html = Storage::get('example/bxwx_chapter_example.html');
             $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
-
-            $method = new ReflectionMethod('App\Service\Novel\BxwxService', 'parseChapterHtml');
-            $method->setAccessible(true);
-            $info = $method->invokeArgs(new BxwxService(), [$html]);
-
+            $info = $this->testPrivateMethod('parseChapterHtml', [$html]);
             Logger::info('testParseChapterHtml success. result: ' . $info);
             $this->assertTrue(true);
         } catch (Throwable $e) {
@@ -245,5 +226,20 @@ class BxwxTest extends TestCase
             );
             $this->assertTrue(false);
         }
+    }
+
+    /**
+     * 测试私有方法
+     *
+     * @param string $methodName
+     * @param array $params
+     * @return mixed
+     * @throws ReflectionException
+     */
+    private function testPrivateMethod(string $methodName, array $params = [])
+    {
+        $method = new ReflectionMethod(BxwxService::class, $methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs(new BxwxService(), $params);
     }
 }

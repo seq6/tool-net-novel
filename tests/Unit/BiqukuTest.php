@@ -7,11 +7,13 @@ use App\Service\Novel\BiqukuService;
 use App\Service\Util;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Storage;
+use ReflectionException;
+use ReflectionMethod;
 use Tests\TestCase;
 use Throwable;
 
 /**
- * 笔趣阁测试案例
+ * <笔趣阁>测试案例
  *
  * Class BiqukuTest
  * @package Tests\Unit
@@ -73,7 +75,7 @@ class BiqukuTest extends TestCase
     {
         try {
             $html = Storage::get('example/biquku_search_example.html');
-            $info = (new BiqukuService())->parseSearchHtml($html);
+            $info = $this->testPrivateMethod('parseSearchHtml', [$html]);
             Logger::info(
                 'testParseSearchHtml success. result: ' . json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
             );
@@ -93,7 +95,7 @@ class BiqukuTest extends TestCase
     {
         try {
             $html = Storage::get('example/biquku_rank_example.html');
-            $info = (new BiqukuService())->parseHotListHtml($html);
+            $info = $this->testPrivateMethod('parseHotListHtml', [$html]);
             Logger::info(
                 'testParseHotListHtml success. result: ' . json_encode(
                     $info,
@@ -116,7 +118,7 @@ class BiqukuTest extends TestCase
     {
         try {
             $html = Storage::get('example/biquku_novel_example.html');
-            $info = (new BiqukuService())->parseDirHtml($html);
+            $info = $this->testPrivateMethod('parseDirHtml', [$html]);
             Logger::info(
                 'testParseDirHtml success. result: ' . json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
             );
@@ -136,7 +138,7 @@ class BiqukuTest extends TestCase
     {
         try {
             $html = Storage::get('example/biquku_chapter_example.html');
-            $info = (new BiqukuService())->parseChapterHtml($html);
+            $info = $this->testPrivateMethod('parseChapterHtml', [$html]);
             Logger::info('testParseChapterHtml success. result: ' . $info);
             $this->assertTrue(true);
         } catch (Throwable $e) {
@@ -145,5 +147,20 @@ class BiqukuTest extends TestCase
             );
             $this->assertTrue(false);
         }
+    }
+
+    /**
+     * 测试私有方法
+     *
+     * @param string $methodName
+     * @param array $params
+     * @return mixed
+     * @throws ReflectionException
+     */
+    private function testPrivateMethod(string $methodName, array $params = [])
+    {
+        $method = new ReflectionMethod(BiqukuService::class, $methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs(new BiqukuService(), $params);
     }
 }

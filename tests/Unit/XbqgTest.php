@@ -5,11 +5,13 @@ namespace Tests\Unit;
 use App\Service\Logger;
 use App\Service\Novel\XbqgService;
 use Illuminate\Support\Facades\Storage;
+use ReflectionException;
+use ReflectionMethod;
 use Tests\TestCase;
 use Throwable;
 
 /**
- * 新笔趣阁测试案例
+ * <新笔趣阁>测试案例
  *
  * Class XbqgTest
  * @package Tests\Unit
@@ -23,7 +25,7 @@ class XbqgTest extends TestCase
     {
         try {
             $html = Storage::get('example/xbqg_search_example.html');
-            $info = (new XbqgService())->parseSearchHtml($html);
+            $info = $this->testPrivateMethod('parseSearchHtml', [$html]);
             Logger::info(
                 'testParseSearchHtml success. result: ' . json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
             );
@@ -43,7 +45,7 @@ class XbqgTest extends TestCase
     {
         try {
             $html = Storage::get('example/xbqg_rank_example.html');
-            $info = (new XbqgService())->parseHotListHtml($html);
+            $info = $this->testPrivateMethod('parseHotListHtml', [$html]);
             Logger::info(
                 'testParseHotListHtml success. result: ' . json_encode(
                     $info,
@@ -66,7 +68,7 @@ class XbqgTest extends TestCase
     {
         try {
             $html = Storage::get('example/xbqg_novel_example.html');
-            $info = (new XbqgService())->parseDirHtml($html);
+            $info = $this->testPrivateMethod('parseDirHtml', [$html]);
             Logger::info(
                 'testParseDirHtml success. result: ' . json_encode($info, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
             );
@@ -86,7 +88,7 @@ class XbqgTest extends TestCase
     {
         try {
             $html = Storage::get('example/xbqg_chapter_example.html');
-            $info = (new XbqgService())->parseChapterHtml($html);
+            $info = $this->testPrivateMethod('parseChapterHtml', [$html]);
             Logger::info('testParseChapterHtml success. result: ' . $info);
             $this->assertTrue(true);
         } catch (Throwable $e) {
@@ -95,5 +97,20 @@ class XbqgTest extends TestCase
             );
             $this->assertTrue(false);
         }
+    }
+
+    /**
+     * 测试私有方法
+     *
+     * @param string $methodName
+     * @param array $params
+     * @return mixed
+     * @throws ReflectionException
+     */
+    private function testPrivateMethod(string $methodName, array $params = [])
+    {
+        $method = new ReflectionMethod(XbqgService::class, $methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs(new XbqgService(), $params);
     }
 }
