@@ -77,7 +77,6 @@ class NovelController extends Controller
             Logger::error('params error!');
             return ApiHelper::apiFail(ErrorCode::PARAMS_INVALID, 'empty params');
         }
-        $uri = trim($uri, '/');
 
         // 该小说已被收藏
         $novel = Novel::getByUri($site, $uri);
@@ -118,7 +117,8 @@ class NovelController extends Controller
         $process = Chapter::getSyncProcess();
         foreach ($novels as &$novel) {
             $service = NovelSiteFactory::getService($novel['site']);
-            $novel['cover'] = $service->baseUri . $novel['cover'];
+            $novel['cover'] = strpos($novel['cover'], 'http') === 0 ?
+                $novel['cover'] : $service->baseUri . $novel['cover'];
             $novel['uri'] = $service->baseUri . $novel['uri'];
             $novel['done_chapter'] = $process[$novel['id']] ?? 0;
         }

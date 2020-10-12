@@ -10,7 +10,8 @@ use DOMDocument;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Filesystem\Cache;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * 笔下文学
@@ -56,6 +57,7 @@ class BxwxService extends NovelBaseService
                 Logger::error('spider html is empty.');
                 return null;
             }
+            $content = mb_convert_encoding($content, 'UTF-8', 'GB2312');
             return $this->parseSearchHtml($content);
         } catch (GuzzleException | Exception $e) {
             Logger::error(
@@ -81,6 +83,7 @@ class BxwxService extends NovelBaseService
                 Logger::error('spider html is empty.');
                 return null;
             }
+            $content = mb_convert_encoding($content, 'UTF-8', 'GB2312');
             $info = $this->parseNovelBaseHtml($content);
             if (empty($info)) {
                 return null;
@@ -106,6 +109,7 @@ class BxwxService extends NovelBaseService
                 Logger::error('spider html is empty.');
                 return null;
             }
+            $content = mb_convert_encoding($content, 'UTF-8', 'GB2312');
             $info['chapters'] = $this->parseNovelChaptersHtml($content);
             return $info;
         } catch (GuzzleException | Exception $e) {
@@ -123,6 +127,7 @@ class BxwxService extends NovelBaseService
             Logger::error('spider html is empty.');
             return null;
         }
+        $html = mb_convert_encoding($html, 'UTF-8', 'GB2312');
         return $this->parseChapterHtml($html);
     }
 
@@ -146,6 +151,7 @@ class BxwxService extends NovelBaseService
                 Logger::error('spider html is empty.');
                 return null;
             }
+            $content = mb_convert_encoding($content, 'UTF-8', 'GB2312');
             return $this->parseHotListHtml($content);
         } catch (GuzzleException | Exception $e) {
             Logger::error(
@@ -169,6 +175,7 @@ class BxwxService extends NovelBaseService
     private function getCookie(): ?string
     {
         $cookie = Cache::get(self::BXWX_COOKIE_KEY, '');
+        Logger::info('bxwx cache: cookie=' . $cookie);
         if (empty($cookie)) {
             // 从首页获取cookie信息
             $url = $this->baseUri . 'ph/1.htm';
@@ -227,6 +234,7 @@ class BxwxService extends NovelBaseService
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
                             $uri = $a->attributes->getNamedItem('href')->textContent;
+                            $item['href'] = $uri;
                             $item['uri'] = str_replace($this->baseUri, '', $uri);
                         }
                         break;

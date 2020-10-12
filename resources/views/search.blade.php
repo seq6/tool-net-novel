@@ -7,6 +7,7 @@
                 <select class="selectpicker" name="site" data-width="fit">
                     <option value="xbqg">新笔趣阁</option>
                     <option value="biquku">笔趣库</option>
+                    <option value="bxwx">笔下文学</option>
                 </select>
                 <div class="input-group">
                     <input type="text" name="keyword" class="form-control" maxlength="20">
@@ -25,7 +26,7 @@
                 <th>类型</th>
                 <th>书名</th>
                 <th>作者</th>
-                <th style="width: 40%">简介</th>
+                <th style="width: 35%">简介</th>
                 <th style="width: 20%">最新章节</th>
                 <th>-</th>
             </tr>

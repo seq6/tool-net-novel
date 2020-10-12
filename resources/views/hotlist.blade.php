@@ -7,6 +7,7 @@
                 <select class="selectpicker pull-right" title="请选择站点" name="site" data-width="fit" id="site-select">
                     <option value="xbqg">新笔趣阁</option>
                     <option value="biquku">笔趣库</option>
+                    <option value="bxwx">笔下文学</option>
                 </select>
             </div>
             <div class="col-sm-10">

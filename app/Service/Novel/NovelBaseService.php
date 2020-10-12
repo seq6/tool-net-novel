@@ -53,8 +53,9 @@ abstract class NovelBaseService
             Logger::info('request success! response: ' . substr($content, 0, 100));
             return $content;
         } catch (GuzzleException | Exception $e) {
-            Logger::error('spiderHtml fail! error: ' . $e->getMessage());
-            Logger::error($e->getTraceAsString());
+            Logger::error(
+                sprintf('spiderHtml fail! error: %s, trace: %s', $e->getMessage(), $e->getTraceAsString())
+            );
             return null;
         }
     }
