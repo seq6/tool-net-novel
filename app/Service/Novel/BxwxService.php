@@ -11,7 +11,6 @@ use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * 笔下文学
@@ -234,8 +233,7 @@ class BxwxService extends NovelBaseService
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
                             $uri = $a->attributes->getNamedItem('href')->textContent;
-                            $item['href'] = $uri;
-                            $item['uri'] = str_replace($this->baseUri, '', $uri);
+                            $item['href'] = str_replace($this->baseUri, '', $uri);
                         }
                         break;
                     case 's3':
@@ -243,7 +241,7 @@ class BxwxService extends NovelBaseService
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
                             $uri = $a->attributes->getNamedItem('href')->textContent;
-                            $item['latest_chapter_url'] = trim($uri, '/');
+                            $item['latest_chapter_url'] = str_replace($this->baseUri, '', $uri);
                         }
                         break;
                     case 's4':
@@ -406,8 +404,8 @@ class BxwxService extends NovelBaseService
             $seq = $idx + 1;
             $chapters[$seq] = [
                 'seq' => $seq,
-                'title' => trim($exp[0]),
-                'uri' => trim($exp[1])
+                'title' => trim($exp[1]),
+                'uri' => trim($exp[0])
             ];
         }
         return $chapters;
