@@ -15,17 +15,17 @@
                 let processSync = parseInt(novels[i]['done_chapter'] / novels[i]['chapter'] * 100);
                 $('#novel-list').append(`
                     <li class="media">
-                        <div class="media-left">
-                            <img class="media-object" height="250px" src="${novels[i]['cover']}">
+                        <div class="media-left media-middle">
+                            <img class="media-object" height="200px" src="${novels[i]['cover']}">
                         </div>
                         <div class="media-body">
                             <h3 class="media-heading">${novels[i]['title']}</h3>
-                            <p>作者: ${novels[i]['author']}</p>
-                            <p>类型: ${novels[i]['category']}</p>
-                            <p>总章节: ${novels[i]['chapter']}</p>
-                            <p>
+                            <div>作者: ${novels[i]['author']}</div>
+                            <div>类型: ${novels[i]['category']}</div>
+                            <div>总章节: ${novels[i]['chapter']}</div>
+                            <div>
                                 <small>${novels[i]['intro']}</small>
-                            </p>
+                            </div>
                             ${novels[i]['chapter'] == novels[i]['done_chapter'] ? `
                             <div class="btn-group" role="group">
                                 <a href="/novel/download/zip?novel_id=${novels[i]['id']}" class="btn btn-primary">下载zip</a>
