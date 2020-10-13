@@ -12,9 +12,10 @@
                     @endforeach
                 </select>
                 <div class="input-group">
-                    <input type="text" name="keyword" class="form-control" maxlength="20">
+                    <input type="text" name="keyword" class="form-control" maxlength="20" required>
                     <div class="input-group-addon">
-                        <span id="tosearch" class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <span id="tosearch" class="glyphicon glyphicon-search" aria-hidden="true"
+                              onclick="submitForm()"></span>
                         <div id="searching" hidden><i class="fa fa-spinner fa-spin fa-fw"></i>搜索中...</div>
                     </div>
                 </div>
@@ -92,6 +93,9 @@
             $('#novel-table').empty();
             let keyword = $('input[name="keyword"]').val();
             let site = $('select[name="site"]').val();
+            if (keyword == '') {
+                return false;
+            }
             changeSearchStatus(true);
             $.ajax({
                 url: '/novel/search',
