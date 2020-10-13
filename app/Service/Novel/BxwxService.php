@@ -226,16 +226,15 @@ class BxwxService extends NovelBaseService
                         $item['title'] = trim($span->textContent);
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
-                            $uri = $a->attributes->getNamedItem('href')->textContent;
-                            $item['href'] = str_replace($this->baseUri, '', $uri);
+                            $item['href'] = $a->attributes->getNamedItem('href')->textContent;
+                            $item['uri'] = str_replace($this->baseUri, '', $item['href']);
                         }
                         break;
                     case 's3':
                         $item['latest_chapter_name'] = trim($span->textContent);
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
-                            $uri = $a->attributes->getNamedItem('href')->textContent;
-                            $item['latest_chapter_url'] = str_replace($this->baseUri, '', $uri);
+                            $item['latest_chapter_url'] = trim($a->attributes->getNamedItem('href')->textContent);
                         }
                         break;
                     case 's4':

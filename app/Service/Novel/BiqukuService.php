@@ -272,7 +272,8 @@ class BiqukuService extends NovelBaseService
                     if (empty($a)) {
                         continue;
                     }
-                    $info['href'] = trim($a->attributes->getNamedItem('href')->textContent, '/');
+                    $info['uri'] = trim($a->attributes->getNamedItem('href')->textContent, '/');
+                    $info['href'] = $this->baseUri . $info['uri'];
                 } elseif ($idx == 1) {
                     // 最新章节及链接
                     $info['latest_chapter_name'] = trim($child->textContent);
@@ -285,6 +286,9 @@ class BiqukuService extends NovelBaseService
                         continue;
                     }
                     $info['latest_chapter_url'] = trim($a->attributes->getNamedItem('href')->textContent, '/');
+                    if (!str_starts_with($info['latest_chapter_url'], 'http')) {
+                        $info['latest_chapter_url'] = $this->baseUri . $info['latest_chapter_url'];
+                    }
                 } elseif ($idx == 2) {
                     // 作者
                     $info['author'] = trim($child->textContent);

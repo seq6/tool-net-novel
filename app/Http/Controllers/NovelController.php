@@ -11,6 +11,7 @@ use App\Service\Novel\NovelSiteFactory;
 use App\Service\Novel\NovelStorage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
@@ -54,9 +55,6 @@ class NovelController extends Controller
         $existNovels = Novel::existBatch($site, array_column($results, 'href'));
 
         foreach ($results as &$r) {
-            $r['uri'] = $r['href'];
-            $r['href'] = $service->baseUri . $r['href'];
-            $r['latest_chapter_url'] = $service->baseUri . $r['latest_chapter_url'];
             $eKey = $site . '-' . $r['uri'];
             $r['is_collect'] = isset($existNovels[$eKey]) ? 1 : 0;
         }
@@ -99,9 +97,13 @@ class NovelController extends Controller
         }
 
         // 添加到数据库
-        $id = Novel::add($site, $uri, $novel);
-        Chapter::addBatch($id, $novel['chapters']);
-        Logger::info('insert success. id=' . $id);
+        DB::transaction(
+            function () use ($site, $uri, $novel) {
+                $id = Novel::add($site, $uri, $novel);
+                Chapter::addBatch($id, $novel['chapters']);
+                Logger::info('insert success. id=' . $id);
+            }
+        );
 
         return ApiHelper::apiSuccess();
     }

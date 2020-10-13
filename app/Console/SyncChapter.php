@@ -10,6 +10,12 @@ use App\Service\Novel\NovelSiteFactory;
 use App\Service\Novel\NovelStorage;
 use Illuminate\Console\Command;
 
+/**
+ * 同步小说章节至本地
+ *
+ * Class SyncChapter
+ * @package App\Console
+ */
 class SyncChapter extends Command
 {
     protected $name = 'sync:chapter';

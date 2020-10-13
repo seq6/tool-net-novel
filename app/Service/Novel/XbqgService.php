@@ -299,7 +299,8 @@ class XbqgService extends NovelBaseService
             if (empty($item)) {
                 continue;
             }
-            $info['href'] = str_replace($this->baseUri, '', trim($item->textContent, '/'));
+            $info['href'] = trim($item->textContent, '/');
+            $info['uri'] = str_replace($this->baseUri, '', $info['href']);
 
             // 简介
             $descNode = DOMHelp::getFirstNodeByClass($detailNode->childNodes, 'result-game-item-desc');
@@ -328,7 +329,10 @@ class XbqgService extends NovelBaseService
                     if (empty($item)) {
                         continue;
                     }
-                    $info['latest_chapter_url'] = str_replace($this->baseUri, '', trim($item->textContent));
+                    $info['latest_chapter_url'] = trim($item->textContent, ' /');
+                    if (!str_starts_with($info['latest_chapter_url'], 'http')) {
+                        $info['latest_chapter_url'] = $this->baseUri . $info['latest_chapter_url'];
+                    }
                 }
             }
 
