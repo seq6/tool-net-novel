@@ -52,7 +52,7 @@ class NovelController extends Controller
         }
 
         // 查询已收藏的小说
-        $existNovels = Novel::existBatch($site, array_column($results, 'href'));
+        $existNovels = Novel::existBatch($site, array_column($results, 'uri'));
 
         foreach ($results as &$r) {
             $eKey = $site . '-' . $r['uri'];
@@ -332,7 +332,6 @@ class NovelController extends Controller
     public function isCollectedBatch(Request $req)
     {
         $site = trim($req->get('site'));
-        $uris = explode(';', $req->get('uris'));
-        return ApiHelper::apiSuccess(['collected' => Novel::existBatch($site, $uris)]);
+        return ApiHelper::apiSuccess(['collected' => Novel::collectedBatch($site)]);
     }
 }

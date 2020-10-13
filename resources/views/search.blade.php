@@ -163,7 +163,29 @@
                 let data = JSON.parse(value);
                 $('input[name="keyword"]').val(data.keyword);
                 $('select[name="site"]').val(data.site);
-                updateTable(data.site, data.results);
+                if (data.results.length > 0) {
+                    let searchResults = data.results;
+                    $.ajax({
+                        url: '/novel/collected',
+                        type: 'get',
+                        cache: false,
+                        dataType: 'json',
+                        async: false,
+                        data: {
+                            'site': data.site
+                        },
+                        success: function (data) {
+                            if (data.code == 0) {
+                                let collected = data.data.collected;
+                                for (let i = 0; i < searchResults.length; i++) {
+                                    searchResults[i]['is_collect'] =
+                                        collected.hasOwnProperty(searchResults[i]['uri']) ? 1 : 0;
+                                }
+                            }
+                        }
+                    })
+                    updateTable(data.site, searchResults);
+                }
             }
         });
     </script>

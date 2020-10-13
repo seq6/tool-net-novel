@@ -147,4 +147,20 @@ class Novel extends Model
     {
         return self::get($cols)->toArray();
     }
+
+    /**
+     * 获取指定站点所有被收藏的小说
+     *
+     * @param string $site
+     * @return array
+     */
+    public static function collectedBatch(string $site): array
+    {
+        $novels = self::where('site', $site)->get(['id', 'uri'])->toArray();
+        $list = [];
+        foreach ($novels as $novel) {
+            $list[$novel['uri']] = $novel['id'];
+        }
+        return $list;
+    }
 }
