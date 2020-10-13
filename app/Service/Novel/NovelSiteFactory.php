@@ -9,16 +9,19 @@ class NovelSiteFactory
     public static $novelSites = [
         'xbqg' => [
             'name' => '新笔趣阁',
+            'host' => 'https://www.xsbiquge.com/',
             'search' => true,
             'hotlist' => true,
         ],
         'biquku' => [
             'name' => '笔趣阁',
+            'host' => 'http://www.biquku.la/',
             'search' => true,
             'hotlist' => true,
         ],
         'bxwx' => [
             'name' => '笔下文学',
+            'host' => 'http://www.bxwx666.org/',
             'search' => true,
             'hotlist' => true,
         ]

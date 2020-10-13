@@ -116,10 +116,16 @@ class NovelController extends Controller
         $novels = Novel::getAllNovel();
         $process = Chapter::getSyncProcess();
         foreach ($novels as &$novel) {
-            $service = NovelSiteFactory::getService($novel['site']);
-            $novel['cover'] = strpos($novel['cover'], 'http') === 0 ?
-                $novel['cover'] : $service->baseUri . $novel['cover'];
-            $novel['uri'] = $service->baseUri . $novel['uri'];
+            $host = NovelSiteFactory::$novelSites[$novel['site']]['host'];
+            // 封面图
+            if (!str_starts_with($novel['cover'], 'http')) {
+                $novel['cover'] = $host . $novel['cover'];
+            }
+            // 原地址链接
+            if (!str_starts_with($novel['uri'], 'http')) {
+                $novel['uri'] = $host . $novel['uri'];
+            }
+            // 已完成同步的章节数量
             $novel['done_chapter'] = $process[$novel['id']] ?? 0;
         }
         return ApiHelper::apiSuccess(['list' => $novels]);
