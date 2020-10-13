@@ -5,9 +5,11 @@
         <form class="form-inline" onsubmit="return submitForm()">
             <div class="form-group">
                 <select class="selectpicker" name="site" data-width="fit">
-                    <option value="xbqg">新笔趣阁</option>
-                    <option value="biquku">笔趣库</option>
-                    <option value="bxwx">笔下文学</option>
+                    @foreach(\App\Service\Novel\NovelSiteFactory::$novelSites as $site => $val)
+                        @if ($val['search'])
+                            <option value="{{$site}}">{{$val['name']}}</option>
+                        @endif
+                    @endforeach
                 </select>
                 <div class="input-group">
                     <input type="text" name="keyword" class="form-control" maxlength="20">

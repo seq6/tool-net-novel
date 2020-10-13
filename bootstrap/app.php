@@ -41,6 +41,25 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->singleton(
+    'xbqg',
+    function () {
+        return new \App\Service\Novel\XbqgService();
+    }
+);
+$app->singleton(
+    'biquku',
+    function () {
+        return new \App\Service\Novel\BiqukuService();
+    }
+);
+$app->singleton(
+    'bxwx',
+    function () {
+        return new \App\Service\Novel\BxwxService();
+    }
+);
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

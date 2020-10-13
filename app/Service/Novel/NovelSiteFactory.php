@@ -6,7 +6,23 @@ use App\Service\Logger;
 
 class NovelSiteFactory
 {
-    private static $containers = [];
+    public static $novelSites = [
+        'xbqg' => [
+            'name' => '新笔趣阁',
+            'search' => true,
+            'hotlist' => true,
+        ],
+        'biquku' => [
+            'name' => '笔趣阁',
+            'search' => true,
+            'hotlist' => true,
+        ],
+        'bxwx' => [
+            'name' => '笔下文学',
+            'search' => true,
+            'hotlist' => true,
+        ]
+    ];
 
     /**
      * 获取不同网站实例
@@ -16,25 +32,10 @@ class NovelSiteFactory
      */
     public static function getService(string $site): ?NovelBaseService
     {
-        switch ($site) {
-            case 'xbqg':
-                if (!isset(self::$containers['xbqg'])) {
-                    self::$containers['xbqg'] = new XbqgService();
-                }
-                return self::$containers['xbqg'];
-            case 'biquku':
-                if (!isset(self::$containers['biquku'])) {
-                    self::$containers['biquku'] = new BiqukuService();
-                }
-                return self::$containers['biquku'];
-            case 'bxwx':
-                if (!isset(self::$containers['bxwx'])) {
-                    self::$containers['bxwx'] = new BxwxService();
-                }
-                return self::$containers['bxwx'];
-            default:
-                Logger::error('error site: ' . $site);
-                return null;
+        if (!in_array($site, ['xbqg', 'biquku', 'bxwx'])) {
+            Logger::error('error site: ' . $site);
+            return null;
         }
+        return app($site);
     }
 }
