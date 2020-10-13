@@ -111,12 +111,13 @@ class BiqukuService extends NovelBaseService
             if (empty($a)) {
                 continue;
             }
-            $uri = $a->attributes->getNamedItem('href')->textContent;
-            $uri = str_replace($this->baseUri, '', $uri);
+            $href = $a->attributes->getNamedItem('href')->textContent;
+            $uri = str_replace($this->baseUri, '', $href);
 
             $list[] = [
                 'title' => $title,
                 'author' => $author,
+                'href' => trim($href, '/'),
                 'uri' => trim($uri, '/')
             ];
         }

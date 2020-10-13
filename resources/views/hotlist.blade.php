@@ -43,15 +43,16 @@
                             <a href="${novels[i]['href']}" target="_blank">${novels[i]['title']}</a>
                         </td>
                         <td>${novels[i]['author'] || '----'}</td>
-                        <td>${novels[i]['latest_chapter_name'] || '----'}</td>
-                        <td>
-                        ${novels[i]['is_collect'] === 1 ? `
-                        <button type="button" class="btn btn-sm" disabled>已收藏</button>
-                        ` : `
-                        <button type="button" class="btn btn-sm btn-success collectNovel" data-uri="${novels[i]['uri']}" data-site="${site}">
-                            <span class="glyphicon glyphicon-plus"></span>收藏
-                        </button>
-                        `}
+                        <td>${novels[i].hasOwnProperty('latest_chapter_url') ? `
+                            <a href="${novels[i]['latest_chapter_url']}" target="_blank">${novels[i]['latest_chapter_name']}</a>
+                            ` : `${novels[i]['latest_chapter_name'] || '----'}`}
+                        </td>
+                        <td>${novels[i]['is_collect'] === 1 ? `
+                            <button type="button" class="btn btn-sm" disabled>已收藏</button>` : `
+                            <button type="button" class="btn btn-sm btn-success collectNovel" data-uri="${novels[i]['uri']}" data-site="${site}">
+                                <span class="glyphicon glyphicon-plus"></span>收藏
+                            </button>
+                            `}
                         </td>
                     </tr>`);
             }

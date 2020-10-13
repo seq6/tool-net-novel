@@ -98,6 +98,7 @@ class XbqgService extends NovelBaseService
                         if (!empty($a)) {
                             $uri = $a->attributes->getNamedItem('href')->textContent;
                             $item['uri'] = trim($uri, '/');
+                            $item['href'] = $this->baseUri . $item['uri'];
                         }
                         break;
                     case 's3':
@@ -105,7 +106,7 @@ class XbqgService extends NovelBaseService
                         $a = DOMHelp::getFirstNodeByTag($span->childNodes, 'a');
                         if (!empty($a)) {
                             $uri = $a->attributes->getNamedItem('href')->textContent;
-                            $item['latest_chapter_url'] = trim($uri, '/');
+                            $item['latest_chapter_url'] = $this->baseUri . trim($uri, '/');
                         }
                         break;
                     case 's4':

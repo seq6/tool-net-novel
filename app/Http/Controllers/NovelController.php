@@ -163,12 +163,8 @@ class NovelController extends Controller
         $existNovels = Novel::existBatch($site, array_column($results, 'uri'));
 
         foreach ($results as &$r) {
-            $r['href'] = $service->baseUri . $r['uri'];
             $eKey = $site . '-' . $r['uri'];
             $r['is_collect'] = isset($existNovels[$eKey]) ? 1 : 0;
-            if (isset($r['latest_chapter_url'])) {
-                $r['latest_chapter_url'] = $service->baseUri . $r['latest_chapter_url'];
-            }
         }
         return ApiHelper::apiSuccess(['list' => $results]);
     }
