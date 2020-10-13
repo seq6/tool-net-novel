@@ -25,22 +25,22 @@ class BxwxService extends NovelBaseService
     public $baseUri = 'http://www.bxwx666.org/';
 
     private $hotListUri = 'http://www.bxwx666.org/ph/1.htm';
-    private $searchUri = 'http://www.bxwx666.org/search.aspx';
+    private $searchUri = 'http://www.bxwx666.org/search.aspx?bookname=';
 
     public function search(string $keyword): ?array
     {
         try {
             $keyword = urlencode(mb_convert_encoding($keyword, 'GB2312'));
+            $url = $this->searchUri . $keyword;
             $resp = Util::getHttpClient()->request(
                 'GET',
-                $this->searchUri,
+                $url,
                 [
-                    RequestOptions::QUERY => ['bookname' => $keyword],
                     RequestOptions::HEADERS => ['Cookie' => $this->getCookie(), 'Referer' => $this->hotListUri]
                 ]
             );
             if ($resp->getStatusCode() != 200) {
-                Logger::error(sprintf('request %s fail! http code=%d', $this->searchUri, $resp->getStatusCode()));
+                Logger::error(sprintf('request %s fail! http code=%d', $url, $resp->getStatusCode()));
                 return null;
             }
 
