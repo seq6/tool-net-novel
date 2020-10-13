@@ -4,13 +4,15 @@
     <section class="container">
         <div class="row">
             <div class="col-sm-2">
-                <select class="selectpicker pull-right" title="请选择站点" name="site" data-width="fit" id="site-select">
+                <select class="selectpicker" title="请选择站点" name="site" data-width="75%" id="site-select">
                     @foreach(\App\Service\Novel\NovelSiteFactory::$novelSites as $site => $val)
                         @if ($val['hotlist'])
                             <option value="{{$site}}">{{$val['name']}}</option>
                         @endif
                     @endforeach
                 </select>
+                <br><br>
+                <div id="searching" hidden>搜索中...<i class="fa fa-spinner fa-spin fa-fw"></i></div>
             </div>
             <div class="col-sm-10">
                 <table class="table table-striped table-hover">
@@ -67,9 +69,21 @@
             localStorage.setItem('hotlist-cache', JSON.stringify(value));
         }
 
+        // 关闭选择框
+        function disableSelect(turn) {
+            $('#site-select').prop('disabled', turn);
+            $('#site-select').selectpicker('refresh');
+            if (turn) {
+                $('#searching').show();
+            } else {
+                $('#searching').hide();
+            }
+        }
+
         // 切换站点
         $(document).on('change', '#site-select', function () {
             let site = $(this).val();
+            disableSelect(true);
             $.ajax({
                 url: '/novel/hotlist',
                 type: 'get',
@@ -85,9 +99,11 @@
                     } else {
                         bootbox.alert('搜索失败: ' + data.message);
                     }
+                    disableSelect(false);
                 },
                 error: function (e) {
                     bootbox.alert('搜索失败, error: ' + e.responseText);
+                    disableSelect(false);
                 }
             });
         });
