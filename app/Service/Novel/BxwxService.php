@@ -32,6 +32,12 @@ class BxwxService extends NovelBaseService
         try {
             $keyword = urlencode(mb_convert_encoding($keyword, 'GB2312'));
             $url = $this->searchUri . $keyword;
+            $cookie = $this->getCookie();
+            if (empty($cookie)) {
+                Logger::info('search fail, cookie is empty!');
+                return [];
+            }
+
             $resp = Util::getHttpClient()->request(
                 'GET',
                 $url,
@@ -136,7 +142,9 @@ class BxwxService extends NovelBaseService
 
             // 缓存cookie
             $setCookie = $resp->getHeader('Set-Cookie');
-            $this->cacheCookie($setCookie[0]);
+            if (!empty($setCookie)) {
+                $this->cacheCookie($setCookie[0]);
+            }
 
             // 解析html
             $content = $resp->getBody()->getContents();
@@ -178,6 +186,10 @@ class BxwxService extends NovelBaseService
                 return null;
             }
             $setCookie = $resp->getHeader('Set-Cookie');
+            if (empty($setCookie)) {
+                Logger::error('Set-Cookie is empty!');
+                return null;
+            }
             $cookie = $this->cacheCookie($setCookie[0]);
         }
         return $cookie;
